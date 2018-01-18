@@ -6,7 +6,7 @@
  *
  * C PROGRAMMING ASSIGNMENT 1
  * https://github.com/ucd-os-pistachio-s18/msl-clang-001
- * 
+ *
  */
 
 
@@ -101,6 +101,7 @@ int main(int argc, char **argv)
     /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
     /* DESTROY TREE */
 
+    
     exit(0);
 
 }
