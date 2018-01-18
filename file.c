@@ -5,7 +5,7 @@
 #include "file.h"
 
 
-void testFileClass()
+void testFile()
 {
     printf("DEBUG:  file.c linked successfully\n");
 }

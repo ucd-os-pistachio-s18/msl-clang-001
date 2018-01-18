@@ -5,7 +5,7 @@
 #include "tree.h"
 
 
-void testTreeClass()
+void testTree()
 {
     printf("DEBUG:  tree.c linked successfully\n");
 }

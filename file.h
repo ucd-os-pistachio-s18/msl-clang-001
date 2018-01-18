@@ -3,6 +3,6 @@
 
 /* FILE IO HEADER */
 
-void testFileClass();
+void testFile();
 
 #endif

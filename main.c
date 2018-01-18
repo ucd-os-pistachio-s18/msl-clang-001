@@ -85,8 +85,8 @@ int main(int argc, char **argv)
 {
 
     printf("\n\nDEBUG:  Program has compiled successfully\n");
-    testFileClass();
-    testTreeClass();
+    testFile();
+    testTree();
 
 
 
@@ -97,8 +97,10 @@ int main(int argc, char **argv)
 
 
     /* TASKS: */
-    
+
     /* ACCEPT INPUT FILE AS COMMANDLINE ARGUMENT */
+        /* TEST FILE EXISTS */
+        /* OPEN FILE */
     /* READ FILE WORD-BY-WORD INTO BUFFER */
     /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
     /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
