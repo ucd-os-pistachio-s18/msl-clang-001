@@ -152,6 +152,7 @@ int main(int argc, char **argv)
         case 3:
             printf("DEBUG:  There are 2 commandline arguments:\n");
             printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
+
             processFiles((const char*)argv[1], (const char*)argv[2]);
             break;
 

@@ -18,8 +18,47 @@ void processFiles(const char* inputFilename, const char* outputFilename)
     FILE *inputFile_ptr;
     FILE *outputFile_ptr;
 
+
+    /* TRY TO OPEN INPUT FILE */
     printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
+    inputFile_ptr = fopen(inputFilename, "r");
+
+    /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
+    if (!inputFile_ptr)
+    {
+        printUsageStatement();
+        exit(1);
+    }
+
+    printf("DEBUG:  Input file opened successfully\n");
+
+
+
+    /* TRY TO OPEN OUTPUT FILE */
     printf("DEBUG:  Attempting to open output file:  %s \n", outputFilename);
+    outputFile_ptr = fopen(outputFilename, "w");
+
+    /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
+    if (!outputFile_ptr)
+    {
+        printUsageStatement();
+        exit(1);
+    }
+
+    printf("DEBUG:  Output file opened successfully\n");
+
+
+
+
+
+
+
+    /* CLOSING FILES */
+    printf("DEBUG:  Closing files\n");
+    fclose(inputFile_ptr);
+    fclose(outputFile_ptr);
+    printf("DEBUG:  File closed successfully \n");
+
 
 }
 
