@@ -97,14 +97,14 @@
 
 
 
-/* CONSTANT DEFINITIONS: */
+/* GLOBAL CONSTANT DEFINITIONS: */
 
 const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
-        "\nNote:  If none is specified, the default outputfile will be: ";
+                              "\nNote:  If none is specified, the default outputfile will be: ";
 
 const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
 
-const int BUFFER_SIZE = 1024;  /* THIS IS DECIDEDLY EXCESSIVE */
+const int BUFFER_SIZE = 1024;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
 
 
 
@@ -117,12 +117,6 @@ void printUsageStatement();
 int main(int argc, char **argv)
 {
 
-    /* TODO: */
-
-    /* INCLUDE DATA STRUCTURE HEADER AND IMPLEMENTATION */
-    /* INCLUDE FILE IO HEADER AND IMPLEMENTATION */
-
-
     /* TASKS: */
 
     /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
@@ -134,13 +128,15 @@ int main(int argc, char **argv)
         /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
     /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
     /* DESTROY TREE */
-
+    /* CLOSE FILES */
 
 
     /* IMPLEMENTATION: */
 
 
     /* VARIABLE DECLARATIONS: */
+    FILE *inputFile_ptr;
+    FILE *outputFile_ptr;
 
 
     /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
@@ -149,11 +145,14 @@ int main(int argc, char **argv)
         case 2:
             printf("DEBUG:  There is 1 commandline argument:\n");
             printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
+
+            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME);
             break;
 
         case 3:
             printf("DEBUG:  There are 2 commandline arguments:\n");
             printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
+            processFiles((const char*)argv[1], (const char*)argv[2]);
             break;
 
         default:
@@ -162,10 +161,10 @@ int main(int argc, char **argv)
     }
 
 
-
     exit(0);
 
 }
+
 
 
 void printUsageStatement()
