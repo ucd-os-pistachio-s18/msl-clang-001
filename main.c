@@ -100,12 +100,13 @@
 /* GLOBAL CONSTANT DEFINITIONS: */
 
 const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
-                              "\nNote:  If none is specified, the default outputfile will be: ";
+                              "\nNOTE:  If none is specified, the default outputfile will be: ";
 
 const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
 
 const int BUFFER_SIZE = 1024;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
 
+const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
 
 /* FUNCTION DECLARATIONS */
@@ -143,17 +144,17 @@ int main(int argc, char **argv)
     switch (argc)
     {
         case 2:
-            printf("DEBUG:  There is 1 commandline argument:\n");
-            printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
+            if (SHOW_DEBUG) printf("DEBUG:  There is 1 commandline argument:\n");
+            if (SHOW_DEBUG) printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
 
-            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME);
+            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, SHOW_DEBUG);
             break;
 
         case 3:
-            printf("DEBUG:  There are 2 commandline arguments:\n");
-            printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
+            if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline arguments:\n");
+            if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
-            processFiles((const char*)argv[1], (const char*)argv[2]);
+            processFiles((const char*)argv[1], (const char*)argv[2], SHOW_DEBUG);
             break;
 
         default:

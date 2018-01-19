@@ -7,11 +7,11 @@
 
 
 /* FUNCTION:  processFiles
- * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME
+ * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, SHOW DEBUG BOOLEAN
  * RETURNS:   VOID
  * PERFORMS:  OPENS FILES, READS INPUTFILE, POPULATES TREE, WRITES OUTPUTFILE, CLOSES FILES
  */
-void processFiles(const char* inputFilename, const char* outputFilename)
+void processFiles(const char* inputFilename, const char* outputFilename, const int SHOW_DEBUG)
 {
 
     /* VARIABLE DECLARATIONS: */
@@ -20,7 +20,7 @@ void processFiles(const char* inputFilename, const char* outputFilename)
 
 
     /* TRY TO OPEN INPUT FILE */
-    printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
+    if (SHOW_DEBUG) printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
     inputFile_ptr = fopen(inputFilename, "r");
 
     /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
@@ -30,12 +30,12 @@ void processFiles(const char* inputFilename, const char* outputFilename)
         exit(1);
     }
 
-    printf("DEBUG:  Input file opened successfully\n");
+    if (SHOW_DEBUG) printf("DEBUG:  Input file opened successfully\n");
 
 
 
     /* TRY TO OPEN OUTPUT FILE */
-    printf("DEBUG:  Attempting to open output file:  %s \n", outputFilename);
+    if (SHOW_DEBUG) printf("DEBUG:  Attempting to open output file:  %s \n", outputFilename);
     outputFile_ptr = fopen(outputFilename, "w");
 
     /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
@@ -45,7 +45,7 @@ void processFiles(const char* inputFilename, const char* outputFilename)
         exit(1);
     }
 
-    printf("DEBUG:  Output file opened successfully\n");
+    if (SHOW_DEBUG) printf("DEBUG:  Output file opened successfully\n");
 
 
 
@@ -54,10 +54,10 @@ void processFiles(const char* inputFilename, const char* outputFilename)
 
 
     /* CLOSING FILES */
-    printf("DEBUG:  Closing files\n");
+    if (SHOW_DEBUG) printf("DEBUG:  Closing files\n");
     fclose(inputFile_ptr);
     fclose(outputFile_ptr);
-    printf("DEBUG:  File closed successfully \n");
+    if (SHOW_DEBUG) printf("DEBUG:  File closed successfully \n");
 
 
 }

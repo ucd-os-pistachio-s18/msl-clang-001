@@ -5,11 +5,11 @@
 
 
 /* FUNCTION:  processFiles
- * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME
+ * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, SHOW DEBUG BOOLEAN
  * RETURNS:   VOID
  * PERFORMS:  OPENS FILES, READS INPUTFILE, POPULATES TREE, WRITES OUTPUTFILE, CLOSES FILES
  */
-void processFiles(const char* inputFilename, const char* outputFilename);
+void processFiles(const char* inputFilename, const char* outputFilename, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  openFile
