@@ -1,4 +1,5 @@
-/* AUTHOR(S):  BRIAN SUMNER
+/*
+ * AUTHOR(S):  BRIAN SUMNER
  * GROUP: UCD-OS-PISTACHIO-S18
  *
  * UCDENVER CSCI 3453
@@ -6,6 +7,20 @@
  *
  * C PROGRAMMING ASSIGNMENT 1
  * https://github.com/ucd-os-pistachio-s18/msl-clang-001
+ *
+ */
+
+
+
+/*
+ * REFERENCE MATERIAL CITED:
+ *
+ * File I/O:
+ * https://www.codingunit.com/c-tutorial-file-io-using-text-files
+ *
+ * Usage statements:
+ * http://courses.cms.caltech.edu/cs11/material/c/mike/misc/c_style_guide.html
+ *
  *
  */
 
@@ -81,14 +96,26 @@
 #include "file.h"
 
 
+
+/* CONSTANT DEFINITIONS: */
+
+const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
+        "\nNote:  If none is specified, the default outputfile will be: ";
+
+const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
+
+const int BUFFER_SIZE = 1024;  /* THIS IS DECIDEDLY EXCESSIVE */
+
+
+
+/* FUNCTION DECLARATIONS */
+
+void printUsageStatement();
+
+
+
 int main(int argc, char **argv)
 {
-
-    printf("\n\nDEBUG:  Program has compiled successfully\n");
-    testFile();
-    testTree();
-
-
 
     /* TODO: */
 
@@ -98,15 +125,52 @@ int main(int argc, char **argv)
 
     /* TASKS: */
 
+    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
     /* ACCEPT INPUT FILE AS COMMANDLINE ARGUMENT */
-        /* TEST FILE EXISTS */
+        /* TEST IF FILE EXISTS */
+            /* IF FILE DOES NOT EXIST, PRINT USAGE STATEMENT AND EXIT */
         /* OPEN FILE */
     /* READ FILE WORD-BY-WORD INTO BUFFER */
-    /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
+        /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
     /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
     /* DESTROY TREE */
 
 
+
+    /* IMPLEMENTATION: */
+
+
+    /* VARIABLE DECLARATIONS: */
+
+
+    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
+    switch (argc)
+    {
+        case 2:
+            printf("DEBUG:  There is 1 commandline argument:\n");
+            printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
+            break;
+
+        case 3:
+            printf("DEBUG:  There are 2 commandline arguments:\n");
+            printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
+            break;
+
+        default:
+            printUsageStatement();
+            exit(1);
+    }
+
+
+
     exit(0);
+
+}
+
+
+void printUsageStatement()
+{
+
+    printf("%s %s \n\n\n", USAGE_STATEMENT, DEFAULT_OUTPUTFILENAME);
 
 }
