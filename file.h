@@ -5,11 +5,19 @@
 
 
 /* FUNCTION:  processFiles
- * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, SHOW DEBUG BOOLEAN
+ * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, BUFFER SIZE, SHOW DEBUG BOOLEAN
  * RETURNS:   VOID
  * PERFORMS:  OPENS FILES, READS INPUTFILE, POPULATES TREE, WRITES OUTPUTFILE, CLOSES FILES
  */
-void processFiles(const char* inputFilename, const char* outputFilename, const int SHOW_DEBUG);
+void processFiles(const char* inputFilename, const char* outputFilename, const int BUFFER_SIZE, const int SHOW_DEBUG);
+
+
+/* FUNCTION:  getWords
+ * RECEIVES:  INPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RETURNS:   VOID
+ * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
+ */
+void getWords(FILE *file_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  openFile

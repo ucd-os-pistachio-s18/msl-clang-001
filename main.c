@@ -17,6 +17,7 @@
  *
  * File I/O:
  * https://www.codingunit.com/c-tutorial-file-io-using-text-files
+ * https://cboard.cprogramming.com/c-programming/16069-getword.html
  *
  * Usage statements:
  * http://courses.cms.caltech.edu/cs11/material/c/mike/misc/c_style_guide.html
@@ -104,7 +105,7 @@ const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile
 
 const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
 
-const int BUFFER_SIZE = 1024;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
+const int BUFFER_SIZE = 127;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
 
 const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
@@ -148,14 +149,14 @@ int main(int argc, char **argv)
             if (SHOW_DEBUG) printf("DEBUG:  There is 1 commandline argument:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
 
-            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, SHOW_DEBUG);
+            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         case 3:
             if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline arguments:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
-            processFiles((const char*)argv[1], (const char*)argv[2], SHOW_DEBUG);
+            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         default:
