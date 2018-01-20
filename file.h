@@ -20,7 +20,21 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 void getWords(FILE *file_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
+/* FUNCTION:  sendWordToTree
+ * RECEIVES:  TBD, SHOW DEBUG BOOLEAN
+ * RETURNS:   TBD
+ * PERFORMS:  SENDS WORD TO INSERT IN TREE
+ */
+void sendWordToTree(int SHOW_DEBUG);
 
+
+
+/* FUNCTION:  outputTreeToFile
+ * RECEIVES:  TBD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RETURNS:   TBD
+ * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
+ */
+void outputTreeToFile(FILE *file_ptr, int SHOW_DEBUG);
 
 
 
