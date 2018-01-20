@@ -21,11 +21,11 @@ void getWords(FILE *file_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  sendWordToTree
- * RECEIVES:  TBD, SHOW DEBUG BOOLEAN
+ * RECEIVES:  TBD, WORD, SHOW DEBUG BOOLEAN
  * RETURNS:   TBD
  * PERFORMS:  SENDS WORD TO INSERT IN TREE
  */
-void sendWordToTree(int SHOW_DEBUG);
+void sendWordToTree(char* word, int SHOW_DEBUG);
 
 
 

@@ -7,5 +7,5 @@
 
 void testTree()
 {
-    printf("DEBUG:  tree.c linked successfully\n");
+    printf("DEBUG:  tree.c linked successfully. \n");
 }

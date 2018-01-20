@@ -1,5 +1,5 @@
 /*
- * COLLABORATOR(S):  BRIAN SUMNER, NIKKI YESALUSKY
+ * COLLABORATORS:  BRIAN SUMNER, NIKKI YESALUSKY
  * GROUP: UCD-OS-PISTACHIO-S18
  *
  * UCDENVER CSCI 3453
@@ -22,6 +22,8 @@
  * Usage statements:
  * http://courses.cms.caltech.edu/cs11/material/c/mike/misc/c_style_guide.html
  *
+ * String tools:
+ * https://www.tutorialspoint.com/c_standard_library/string_h.htm
  *
  */
 
@@ -165,6 +167,7 @@ int main(int argc, char **argv)
     }
 
 
+    if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
     exit(0);
 
 }
