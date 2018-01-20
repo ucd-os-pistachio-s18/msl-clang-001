@@ -25,6 +25,9 @@
  * String tools:
  * https://www.tutorialspoint.com/c_standard_library/string_h.htm
  *
+ * Structs:
+ * https://www.codingunit.com/c-tutorial-structures-unions-typedef
+ * https://stackoverflow.com/questions/3988041/how-to-define-a-typedef-struct-containing-pointers-to-itself
  */
 
 
