@@ -1,23 +1,29 @@
 #ifndef MSL_CLANG_001_TESTS_H
 #define MSL_CLANG_001_TESTS_H
 
-#include "tree.h"
+typedef struct tests tests;
 
-const int test_count = 0;
+const int tests_count = 8;
+
 struct tests{
     int passed;
-    int failed;
+    double rate;
 };
 
-/* note: destructors will be called at the end of each test */
-void node_create();
-void node_insertion();
-void node_get_word();
-void node_get_count();
-void node_print_inorder();
+void pass_fail_rate(tests* test){
+    int i = test->passed;
+    test->rate = i / tests_count;
+}
 
-void tree_create();
-void tree_insertion();
-void tree_print();
+/* note: destructors will be called at the end of each test */
+void node_create(tests*);
+void node_insertion(tests*);
+void node_get_word(tests*);
+void node_get_count(tests*);
+void node_print_inorder(tests*);
+
+void tree_create(tests*);
+void tree_insertion(tests*);
+void tree_print(tests*);
 
 #endif //MSL_CLANG_001_TESTS_H

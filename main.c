@@ -96,7 +96,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "tree.h"
+#include "tests.h"
 #include "file.h"
 
 /* GLOBAL CONSTANT DEFINITIONS: */
@@ -160,7 +160,8 @@ int main(int argc, char **argv)
             exit(1);
     }
 
-
+    tests* tests1;
+    node_create(tests1);
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
     exit(0);
