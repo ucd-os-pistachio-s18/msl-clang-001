@@ -76,7 +76,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* DESTROY TREE */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
-    destroy_tree(tree);
+    temp_destroy_tree(tree);
 
 }
 
