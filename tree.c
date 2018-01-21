@@ -88,9 +88,9 @@ void print_nodes_in_order(Node *root){
     /* if there is no tree, don't print anything */
     if(root != 0){
         print_nodes_in_order(root->left_ptr);
-        char* tmp_word = get_word(root->word);
-        int tmp_int = get_count(root->count);
-        printf("%s: %d", tmp_word, tmp_int);
+        char* tmp_word = get_word(root);
+        int tmp_int = get_count(root);
+        printf("%s: %d/n", tmp_word, tmp_int);
         print_nodes_in_order(root->right_ptr);
     }
 }
