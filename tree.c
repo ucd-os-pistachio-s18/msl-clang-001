@@ -98,3 +98,18 @@ void destroy_tree(Tree* tree){
     tree->size = 0;
     free (tree);
 }
+
+
+
+Tree* temp_new_tree()
+{
+    Tree* tree = (Tree*) malloc(sizeof(struct Tree));
+    return tree;
+}
+
+
+void temp_tree_insert(char* word, Tree* tree)
+{
+    insert(word, tree->root_ptr);
+}
+
