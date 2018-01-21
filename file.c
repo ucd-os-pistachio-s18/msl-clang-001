@@ -201,10 +201,15 @@ void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Tree* tree, const int B
  */
 void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
 {
+    int count = 1;
+
+
     tree_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
-    fprintf(file, "%s \n", word);
+
+    /* SEND TO OUTPUT FILE */
+    fprintf(file, "%s: %d \n", word, count);
 }
 
 
