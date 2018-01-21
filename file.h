@@ -4,6 +4,8 @@
 /* FILE IO HEADER */
 
 
+#include "tree.h"
+
 /* FUNCTION:  processFiles
  * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, BUFFER SIZE, SHOW DEBUG BOOLEAN
  * RETURNS:   VOID
@@ -13,19 +15,19 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
 /* FUNCTION:  getWords
- * RECEIVES:  INPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RECEIVES:  INPUTFILE POINTER, TREE POINTER, BUFFER_SIZE, SHOW DEBUG BOOLEAN
  * RETURNS:   VOID
  * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
  */
-void getWords(FILE *file_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG);
+void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  sendWordToTree
- * RECEIVES:  TBD, WORD, SHOW DEBUG BOOLEAN
+ * RECEIVES:  WORD, TREE, SHOW DEBUG BOOLEAN
  * RETURNS:   TBD
  * PERFORMS:  SENDS WORD TO INSERT IN TREE
  */
-void sendWordToTree(char* word, int SHOW_DEBUG);
+void sendWordToTree(char* word, Tree* tree, int SHOW_DEBUG);
 
 
 
