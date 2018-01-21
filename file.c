@@ -63,7 +63,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
     /* OUTPUT TREE TO FILE */
-    outputTreeToFile(outputFile_ptr, SHOW_DEBUG);
+    outputTreeToFile(outputFile_ptr, tree, SHOW_DEBUG);
 
 
 
@@ -209,12 +209,42 @@ void sendWordToTree(char* word, Tree* tree, int SHOW_DEBUG)
 
 
 /* FUNCTION:  outputTreeToFile
- * RECEIVES:  TBD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RECEIVES:  OUTPUTFILE POINTER, TREE, SHOW DEBUG BOOLEAN
  * RETURNS:   TBD
  * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
  */
-void outputTreeToFile(FILE *file_ptr, int SHOW_DEBUG)
+void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
 {
-    if (SHOW_DEBUG) printf("\nDEBUG:  Listing tree to output file... \n");
+    if (SHOW_DEBUG) printf("\nDEBUG:  Printing tree in order... \n");
+
+    /* temp_print_tree_in_order(tree); */
+
+    /* ACTUAL VERSION OF CODE */
+    print_tree_in_order(tree);
+
+    if (SHOW_DEBUG) printf("DEBUG:  Finished printing tree in order. \n");
+
 }
 
+
+
+
+/* temporary version of prints the tree in order */
+void temp_print_nodes_in_order(Node *root){
+
+    printf("DEBUG:  Printing nodes starting at root:  %d. \n", root);
+    /* if there is no tree, don't print anything */
+    if(root != 0){
+        temp_print_nodes_in_order(root->left_ptr);
+        printf("%s", get_word(root));
+        int i = get_count(root);
+        char* tmp = " : ";
+        tmp = tmp + (char)i;
+        temp_print_nodes_in_order(root->right_ptr);
+    }
+}
+
+/* prints a tree in order */
+void temp_print_tree_in_order(Tree* tree){
+    temp_print_nodes_in_order(tree->root_ptr);
+}

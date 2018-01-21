@@ -36,7 +36,11 @@ void sendWordToTree(char* word, Tree* tree, int SHOW_DEBUG);
  * RETURNS:   TBD
  * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
  */
-void outputTreeToFile(FILE *file_ptr, int SHOW_DEBUG);
+void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG);
+
+
+void temp_print_nodes_in_order(Node *);
+void temp_print_tree_in_order(Tree*);
 
 
 
