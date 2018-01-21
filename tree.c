@@ -121,7 +121,7 @@ int tree_insert(char* new_word, Tree* tree){
 }
 
 /* prints a tree in order */
-void print_tree_in_order(Tree* tree){
+void print_tree(Tree* tree){
     print_nodes_in_order(tree->root_ptr);
 }
 

@@ -44,6 +44,6 @@ void print_nodes_in_order(Node *);
 Tree* new_tree();
 void destroy_tree(Tree*);
 int tree_insert(char*, Tree*);
-void print_tree_in_order(Tree*);
+void print_tree(Tree*);
 
 #endif
