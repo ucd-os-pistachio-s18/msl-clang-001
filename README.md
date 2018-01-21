@@ -11,15 +11,20 @@ ___
 ##### APPROACH:
 
 This assignment was given on the first day of class.  We were given exactly 6014 minutes to complete this assignment,
-and it is apparent that the majority of the class wasn't even aware this assignment existed.  
+and it is apparent that the majority of the class wasn't even aware this assignment existed.
+
 
 
 ##### DATA STRUCTURES:
 
 
 
+
 ##### ALGORITHMS:
 
+The input file(s) are tokenized into words by reading the file one character at a time.  Every letter is added to a
+buffer, and when the character read from the file is not a letter, the resultant word is sent to the tree where it is
+then inserted into a node.  If the word already existed in the tree, then that word node's instance count is incremented.
 
 
 ##### ETC.:
