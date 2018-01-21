@@ -99,17 +99,21 @@ void print_nodes_in_order(Node *root){
 /* creates a new tree with a word */
 Tree* new_tree(){
     Tree* tree = (Tree*) malloc(sizeof(struct Tree));
+    tree->root_ptr = NULL;
+    tree->size = 0;
     return tree;
 }
 
 /* removes a tree from memory, merely calls destroy_node */
 void destroy_tree(Tree* tree){
-    destroy_node(tree->root_ptr);
+
+    if(tree->root_ptr != NULL) {
+        destroy_node(tree->root_ptr);
+    }
     tree->size = 0;
     free (tree);
 }
 
-<<<<<<< HEAD
 /* inserts a word into a tree */
 int tree_insert(char* new_word, Tree* tree){
     int i = insert(new_word, tree->root_ptr);
@@ -120,32 +124,4 @@ int tree_insert(char* new_word, Tree* tree){
 void print_tree_in_order(Tree* tree){
     print_nodes_in_order(tree->root_ptr);
 }
-=======
 
-
-Tree* temp_new_tree()
-{
-    Tree* tree = (Tree*) malloc(sizeof(struct Tree));
-
-    tree->root_ptr = NULL;
-    tree->size = 0;
-
-    return tree;
-}
-
-
-void temp_tree_insert(char* word, Tree* tree)
-{
-    insert(word, tree->root_ptr);
-}
-
-
-void temp_destroy_tree(Tree* tree)
-{
-    if (tree->root_ptr != NULL)
-        destroy_node(tree->root_ptr);
-
-    tree->size = 0;
-    free (tree);
-}
->>>>>>> 3ee3462a0925ff36779be95a664e5529601444d9
