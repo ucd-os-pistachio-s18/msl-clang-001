@@ -34,6 +34,7 @@
  *
  * Tree traversal:
  * https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+ * http://www.zentut.com/c-tutorial/c-binary-search-tree/
  */
 
 
@@ -97,7 +98,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tree.h"
-#include "tests.h"
 #include "file.h"
 
 /* GLOBAL CONSTANT DEFINITIONS: */
@@ -160,11 +160,6 @@ int main(int argc, char **argv)
             printUsageStatement();
             exit(1);
     }
-
-    tests* tests1 = malloc(sizeof(struct tests));
-    tests1->passed = 0;
-    tests1->rate = 0.0;
-    node_create(tests1);
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
     exit(0);

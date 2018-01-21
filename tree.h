@@ -1,22 +1,35 @@
 #ifndef MSL_CLANG_001_TREE_H
 #define MSL_CLANG_001_TREE_H
 
-/* BINARY TREE WITH NODE-s
- * THIS BINARY TREE WILL HOLD POINTERS TO ITS PARENT
- * ITS LEFT CHILD AND ITS RIGHT CHILD
- * THE DATA HELD WILL BE CHAR ARRAY WHICH CAN ALSO BE
- * CAST TO INT */
+/* BINARY TREE HEADER */
+
+/* THE CLIENT IS ASKING FOR A BALANCED BINARY SEARCH TREE.  WE WILL GIVE THE
+ * CLIENT A BALANCED BINARY TREE IF THERE IS TIME, BUT WE BELIEVE THE CLIENT
+ * WOULD BE JUST AS HAPPY WITH A DOUBLY-LINKED LIST.  WITH A DOUBLY-LINKED
+ * LIST IN PLACE THE PROGRAM WILL FUNCTION PROPERLY, AND WE CAN MODIFY THE
+ * DATA STRUCTURE LATER TO ACCOMMODATE THE CORRECT FUNCTIONALITY OF A BINARY
+ * SEARCH TREE, AND LATER PROVIDE A BALANCING FUNCTION FOR SUCH.
+ */
+
+
+
+/* NODE STRUCT: */
+/* FOREWARD DECLARATIONS */
 typedef struct Node Node;
 typedef struct Tree Tree;
 
-struct Node {
+
+struct Node
+{
 /* HAS POINTERS */
     /* IS A LEFT POINTER */
-    struct Node* left_ptr;
+    Node* left_ptr;
     /* IS A RIGHT POINTER */
-    struct Node* right_ptr;
+    Node* right_ptr;
     /* IS A PARENT POINTER */
-    struct Node* parent_ptr;
+    /* AS A LINKED LIST, PARENT POINTER WILL BE SET TO NULL */
+    Node* parent_ptr;
+
 /* HAS DATA */
     /* IS A CHAR ARRAY */
     char* word;
@@ -24,26 +37,85 @@ struct Node {
     int count;
 };
 
-/* TREE STRUCT COMPOSED OF NODES WITH INCORPORATED COUNT*/
-struct Tree {
+
+/* HAS METHODS */
+/* NOTE: STRUCTS DO NOT HAVE DIRECT METHODS. STRUCTS HOWEVER CAN BE PASSED TO FUNCTIONS BY REFERENCE */
+
+/* CREATES A NODE IN MEMORY */
+Node* newNode(char* word);
+
+/* SETS LEFT POINTER */
+void setNodePtrLeft(Node* node_ptr);
+/* SETS RIGHT POINTER */
+void setNodePtrRight(Node* node_ptr);
+/* SETS PARENT POINTER */
+void setNodePtrParent(Node* node_ptr);
+/* SETS WORD */
+void setNodeWord(Node* node_ptr, char* word);
+/* SETS COUNT */
+void setNodeCount(Node* node_ptr, int count);
+/* INCREMENTS INTEGER COUNT DATA */
+void incNodeCount(Node* node_ptr);
+/* GETS LEFT POINTER */
+Node* getNodePtrLeft(Node* node_ptr);
+/* GETS RIGHT POINTER */
+Node* getNodePtrRight(Node* node_ptr);
+/* GETS PARENT POINTER */
+Node* getNodePtrParent(Node* node_ptr);
+/* GETS WORD */
+char* getNodeWord(Node* node_ptr);
+/* GETS COUNT */
+int getNodeCount(Node* node_ptr);
+/* REMOVES A NODE FROM MEMORY */
+void destroyNode(Node* node_ptr);
+
+
+/* TREE STRUCT */
+struct Tree
+{
 /* HAS POINTERS */
     /* IS A ROOT POINTER */
+    /* AS A LINKED LIST, ROOT POINTER WILL BE SET TO HEAD NODE FOR SIMPLICITY */
+    /* root_ptr must be a Node* or it will not point to the Node-s in the tree */
+    /* this enables the root to get word-s and count-s from the Tree */
+    /* Tree* root_ptr; */
     Node* root_ptr;
+
 /* HAS DATA */
-    /* IS AN INTEGER COUNT OF NUMBER OF NODES IN TREE*/
+    /* IS AN INTEGER COUNT OF NUMBER OF NODES IN TREE; INIT 0 */
     int size;
 };
 
-int new_node(char*, Node*);
-void destroy_node(Node *);
-int insert(char*, Node*);
-char* get_word(Node*);
-int get_count(Node*);
-void print_nodes_in_order(Node *);
+/* HAS METHODS */
+/* NOTE: STRUCTS DO NOT HAVE DIRECT METHODS. STRUCTS HOWEVER CAN BE PASSED TO FUNCTIONS BY REFERENCE */
 
-Tree* new_tree();
-void destroy_tree(Tree*);
-int tree_insert(char*, Tree*);
-void print_tree(Tree*);
+/* CREATES A TREE */
+Tree* newTree();
+/* INSERTS A NODE INTO TREE */
+/* INCREMENT INTEGER COUNT DATA FOR NODE */
+void insertNodeIntoTree(Tree* tree_ptr, Node* node_ptr);
+void insertWordIntoTree(Tree* tree_ptr, char* word);
+/* SEARCHES A TREE FOR DATA */
+/* Node* isWordInTree(Tree* tree_ptr, char* word); */
+/* this should return a success or failure of searched word */
+int isWordInTree(Tree* tree_ptr, char* word);
+/* GETS SIZE OF TREE */
+int getTreeSize(Tree* tree_ptr);
+/* GETS ROOT NODE POINTER */
+Node* getRootNodePtr(Tree* tree_ptr);
+/* LISTS ALL NODES IN TREE IN ORDER */
+/* NOTE: RETURN TYPE AND PROCEDURE TBD */
+/* Node* listNodes(Tree* tree_ptr); */
+void listNodes(Tree*);
+/* REMOVES A NODE FROM TREE */
+/* FIRST THIS NODE MUST BE REMOVED FROM MEMORY */
+void removeNodeFromTree(Tree* tree_ptr, Node* node_ptr);
+/* REMOVES ITSELF FROM MEMORY */
+/* FIRST ALL NODES HELD BY TREE MUST BE REMOVED FROM MEMORY */
+void destroyTree(Tree* tree_ptr);
+
+/* not sure what the purpose of this is */
+void testTree();
+
 
 #endif
