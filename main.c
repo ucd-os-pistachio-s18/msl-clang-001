@@ -161,7 +161,9 @@ int main(int argc, char **argv)
             exit(1);
     }
 
-    tests* tests1;
+    tests* tests1 = malloc(sizeof(struct tests));
+    tests1->passed = 0;
+    tests1->rate = 0.0;
     node_create(tests1);
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
