@@ -40,6 +40,6 @@ void new_node(char*, Node*);
 char* get_word(Node*);
 int get_count(Node*);
 void print_tree_in_order(Node*);
-void new_tree();
+Tree* new_tree();
 
 #endif

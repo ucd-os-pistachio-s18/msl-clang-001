@@ -85,7 +85,7 @@ void print_tree_in_order(Node* root){
     }
 }
 
-void new_tree(){
+Tree* new_tree(){
     Tree* tree = (Tree*) malloc(sizeof(struct Tree));
-
+    return tree;
 }
