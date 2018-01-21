@@ -17,7 +17,7 @@ and it is apparent that the majority of the class wasn't even aware this assignm
 
 ##### DATA STRUCTURES:
 
-We were required to implement a binary search tree using recursive methods.  
+We were required to implement a binary search tree using recursive methods.
 
 
 ##### ALGORITHMS:

@@ -58,7 +58,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
     /* GET WORDS */
-    getWords(inputFile_ptr, tree, BUFFER_SIZE, SHOW_DEBUG);
+    getWords(inputFile_ptr, outputFile_ptr, tree, BUFFER_SIZE, SHOW_DEBUG);
 
 
 
@@ -86,7 +86,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
  * RETURNS:   VOID
  * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
  */
-void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_DEBUG)
+void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_DEBUG)
 {
     /* VARIABLE DECLARATIONS: */
     int rawChar = 0;
@@ -118,7 +118,7 @@ void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_
     if (SHOW_DEBUG)  printf("\nDEBUG:  Getting words from input file with buffer size:  %d \n", BUFFER_SIZE);
 
     /* INIT RAW CHAR */
-    rawChar = fgetc(file_ptr);
+    rawChar = fgetc(inputFile_ptr);
 
     /* DO WHILE NOT EOF */
     while (rawChar != EOF)
@@ -154,7 +154,7 @@ void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_
                 /* BUFFER DOES HOLD A WORD */
 
                 /* SEND WORD TO TREE */
-                sendWordToTree(readBuffer, tree, SHOW_DEBUG);
+                sendWordToTree(readBuffer, outputFile_ptr, tree, SHOW_DEBUG);
 
                 /* RESET BUFFER AND WORDLENGTH */
                 memset(readBuffer, (int) '\0', BUFFER_SIZE + 1); /* NOTE: This is the actual size of the buffer space */
@@ -167,7 +167,7 @@ void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_
 
 
         /* GET NEXT RAW CHAR IN FILE */
-        rawChar = fgetc(file_ptr);
+        rawChar = fgetc(inputFile_ptr);
 
     /* END WHILE LOOP */
     }
@@ -179,7 +179,7 @@ void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_
         /* BUFFER DOES HOLD A WORD */
 
         /* SEND WORD TO TREE */
-        sendWordToTree(readBuffer, tree, SHOW_DEBUG);
+        sendWordToTree(readBuffer, outputFile_ptr, tree, SHOW_DEBUG);
 
         /* RESET BUFFER AND WORDLENGTH (UNNECESSARY BUT DO IT ANYWAY) */
         memset(readBuffer, (int) '\0', BUFFER_SIZE + 1); /* NOTE: This is the actual size of the buffer space */
@@ -199,11 +199,12 @@ void getWords(FILE *file_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_
  * RETURNS:   TBD
  * PERFORMS:  SENDS WORD TO INSERT IN TREE
  */
-void sendWordToTree(char* word, Tree* tree, int SHOW_DEBUG)
+void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
 {
     tree_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
+    fprintf(file, "%s \n", word);
 }
 
 
