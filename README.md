@@ -1,3 +1,13 @@
+![alt text](https://avatars0.githubusercontent.com/u/35566257 "TEAM PISTACHIO")
+
+# TEAM PISTACHIO
+
+#### COLLABORATORS:  BRIAN SUMNER, NIKKI YESALUSKY
+#### UCDENVER CSCI 3453 SPRING 2018
+
+
+___
+
 # C Programming Assignment 1
 
 _data structures and pointers in the C language_
