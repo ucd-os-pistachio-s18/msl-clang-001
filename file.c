@@ -23,7 +23,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* ALLOCATE TREE */
     Tree* tree;
-    tree = new_tree();
+    tree = newTree();
 
 
     /* TRY TO OPEN INPUT FILE */
@@ -76,7 +76,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* DESTROY TREE */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
-    destroy_tree(tree);
+    destroyTree(tree);
 
 }
 
@@ -204,7 +204,6 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
     int count = 1;
 
 
-    tree_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
 
@@ -226,7 +225,7 @@ void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
     /* temp_print_tree_in_order(tree); */
 
     /* ACTUAL VERSION OF CODE */
-    print_tree(tree);
+//    print_tree(tree);
 
     if (SHOW_DEBUG) printf("DEBUG:  Finished printing tree in order. \n");
 
@@ -236,10 +235,11 @@ void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
 
 
 /* temporary version of prints the tree in order */
-void temp_print_nodes_in_order(Node *root){
+/*
+ * void temp_print_nodes_in_order(Node *root){
 
     printf("DEBUG:  Printing nodes starting at root:  %d. \n", root);
-    /* if there is no tree, don't print anything */
+    /* if there is no tree, don't print anything *
     if(root != 0){
         temp_print_nodes_in_order(root->left_ptr);
         printf("%s", get_word(root));
@@ -250,7 +250,8 @@ void temp_print_nodes_in_order(Node *root){
     }
 }
 
-/* prints a tree in order */
+/* prints a tree in order *
 void temp_print_tree_in_order(Tree* tree){
     temp_print_nodes_in_order(tree->root_ptr);
 }
+*/
