@@ -1,21 +1,29 @@
 ![alt text](https://avatars0.githubusercontent.com/u/35566257 "TEAM PISTACHIO")
 
-# TEAM PISTACHIO
-
-
+### TEAM PISTACHIO
 ### COLLABORATORS:  BRIAN SUMNER, NIKKI YESALUSKY
 ### UCDENVER CSCI 3453 SPRING 2018
 
 
 ___
 
+
 ##### APPROACH:
+
+This assignment was given on the first day of class.  We were given exactly 6014 minutes to complete this assignment,
+and it is apparent that the majority of the class wasn't even aware this assignment existed.  
+
 
 ##### DATA STRUCTURES:
 
+
+
 ##### ALGORITHMS:
 
+
+
 ##### ETC.:
+
 
 
 ___
