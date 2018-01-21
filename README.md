@@ -17,7 +17,7 @@ and it is apparent that the majority of the class wasn't even aware this assignm
 
 ##### DATA STRUCTURES:
 
-
+We were required to implement a binary search tree using recursive methods.  
 
 
 ##### ALGORITHMS:
@@ -29,8 +29,16 @@ then inserted into a node.  If the word already existed in the tree, then that w
 
 ##### ETC.:
 
+Our instructor was not willing to consider any extension for the deadline of this particular project.  We believe that
+we by far have completed more of the assigned goals for this project than the majority of the class.  We also believe
+that the majority of the class had not started any attempt to work on this project by the time the assignment was due.
 
 
+
+___
+___
+___
+___
 ___
 
 # C Programming Assignment 1
