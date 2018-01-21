@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "file.h"
-#include "tree.h"
+#include "old_tree.h"
 
 
 /* FUNCTION:  processFiles
@@ -23,7 +23,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* ALLOCATE TREE */
     Tree* tree;
-    tree = newTree();
+    tree = new_tree();
 
 
     /* TRY TO OPEN INPUT FILE */
@@ -76,7 +76,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* DESTROY TREE */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
-    destroyTree(tree);
+    destroy_tree(tree);
 
 }
 
@@ -204,6 +204,7 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
     int count = 1;
 
 
+    tree_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
 

@@ -3,6 +3,6 @@ project(msl_clang_001)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.c tree.h file.h file.c tree.c tests.h tests.c)
+set(SOURCE_FILES main.c old_tree.h file.h file.c old_tree.c tests.h tests.c)
 
 add_executable(msl_clang_001 ${SOURCE_FILES})

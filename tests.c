@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "tests.h"
-#include "tree.h"
+#include "old_tree.h"
 
 char* word1 = "cat";
 char* word2 = "dog";
