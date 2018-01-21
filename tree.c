@@ -99,7 +99,7 @@ void print_nodes_in_order(Node *root){
 /* creates a new tree with a word */
 Tree* new_tree(){
     Tree* tree = (Tree*) malloc(sizeof(struct Tree));
-    tree->root_ptr = NULL;
+    tree->root_ptr = 0;
     tree->size = 0;
     return tree;
 }
@@ -107,7 +107,7 @@ Tree* new_tree(){
 /* removes a tree from memory, merely calls destroy_node */
 void destroy_tree(Tree* tree){
 
-    if(tree->root_ptr != NULL) {
+    if(tree->root_ptr != 0) {
         destroy_node(tree->root_ptr);
     }
     tree->size = 0;
