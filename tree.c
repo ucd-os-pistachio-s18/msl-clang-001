@@ -47,6 +47,7 @@ void insert(char* new_word, Node* root){
     }
 }
 
+/* creates a new node with a word */
 void new_node(char* new_word, Node* root){
 
     Node* node =  (Node*) malloc(sizeof(struct Node));
@@ -58,18 +59,22 @@ void new_node(char* new_word, Node* root){
     node->parent_ptr = root;
 }
 
+/* retrieves the word stored in the node */
 char* get_word(Node* node){
 
     return node->word;
 }
 
+/* retrieves the count stored in the node */
 int get_count(Node* node){
 
     return node->count;
 }
 
+/* prints the tree in order */
 void print_tree_in_order(Node* root){
 
+    // if there is no tree, don't print anything
     if(root != 0){
         print_tree_in_order(root->left_ptr);
         printf(get_word(root));
@@ -78,4 +83,9 @@ void print_tree_in_order(Node* root){
         tmp = tmp + (char)i;
         print_tree_in_order(root->right_ptr);
     }
+}
+
+void new_tree(){
+    Tree* tree = (Tree*) malloc(sizeof(struct Tree));
+
 }

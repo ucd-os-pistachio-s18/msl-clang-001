@@ -7,6 +7,7 @@
  * THE DATA HELD WILL BE CHAR ARRAY WHICH CAN ALSO BE
  * CAST TO INT */
 typedef struct Node Node;
+typedef struct Tree Tree;
 
 struct Node {
 /* HAS POINTERS */
@@ -39,5 +40,6 @@ void new_node(char*, Node*);
 char* get_word(Node*);
 int get_count(Node*);
 void print_tree_in_order(Node*);
+void new_tree();
 
 #endif
