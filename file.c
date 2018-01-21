@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "file.h"
+#include "tree.h"
 
 
 /* FUNCTION:  processFiles
@@ -17,8 +18,12 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 {
 
     /* VARIABLE DECLARATIONS: */
-    FILE *inputFile_ptr;
-    FILE *outputFile_ptr;
+    FILE* inputFile_ptr;
+    FILE* outputFile_ptr;
+
+    /* ALLOCATE TREE */
+    Tree* tree;
+    tree = temp_new_tree();
 
 
     /* TRY TO OPEN INPUT FILE */
@@ -68,6 +73,10 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     fclose(outputFile_ptr);
     if (SHOW_DEBUG) printf("DEBUG:  Files closed successfully. \n");
 
+
+    /* DESTROY TREE */
+    if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
+    temp_destroy_tree(tree);
 
 }
 
