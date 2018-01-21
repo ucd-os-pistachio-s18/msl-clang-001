@@ -24,10 +24,16 @@
  *
  * String tools:
  * https://www.tutorialspoint.com/c_standard_library/string_h.htm
+ * http://en.cppreference.com/w/c/string/byte
  *
  * Structs:
  * https://www.codingunit.com/c-tutorial-structures-unions-typedef
  * https://stackoverflow.com/questions/3988041/how-to-define-a-typedef-struct-containing-pointers-to-itself
+ * https://www.cprogramming.com/
+ * https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html
+ *
+ * Tree traversal:
+ * https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  */
 
 
@@ -36,7 +42,6 @@
  * Detailed Instructions
  *
  * Input
- *
  * The input will be a file containing a single line (i.e. no new lines) of
  * all-lower-case English words. You need to read it in to sort them. The
  * file will be in the same directory as your executable and will appear as
@@ -45,18 +50,15 @@
  * program.
  *
  * Output
- *
  * For each input file input01.txt, generate an output file in the same
  * directory, called myoutput01.txt. Use the provided output01.file to
  * compare against. The output should be an alphabetized list of unique words
  * and their counts in the file, as follows:
- *
  * one: 4
  * three: 5
  * years: 23
  *
  * Data structures
- *
  * You should use a binary tree to keep the running count for words and keep
  * them in alphabetical order. This means that if you have four words, say
  * one, two, three, go, one, that come in this order, you will end up with a
@@ -77,7 +79,6 @@
  * tree.
  *
  * Functionality
- *
  * 1.  Read words from the file. Don't read in the whole file and then
  *     process it. Read it in chunks using a buffer.
  * 2.  Tree lookup for the next word in the input.
@@ -89,22 +90,16 @@
  * 5.  Destroy the tree, making sure you free() dynamic structures in the
  *     proper order.
  * 6.  Your tree functions should be recursive.
- *
- *
  */
 
 
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "tree.h"
 #include "file.h"
 
-
-
 /* GLOBAL CONSTANT DEFINITIONS: */
-
 const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
                               "\nNOTE:  If none is specified, the default outputfile will be: ";
 
@@ -115,12 +110,8 @@ const int BUFFER_SIZE = 127;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
 const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
 
-
 /* FUNCTION DECLARATIONS */
-
 void printUsageStatement();
-
-
 
 int main(int argc, char **argv)
 {
