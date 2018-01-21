@@ -118,8 +118,8 @@ void temp_tree_insert(char* word, Tree* tree)
 }
 
 
-void temp_destroy_tree(Tree* tree){
-
+void temp_destroy_tree(Tree* tree)
+{
     if (tree->root_ptr != NULL)
         destroy_node(tree->root_ptr);
 

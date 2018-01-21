@@ -47,5 +47,6 @@ void destroy_tree(Tree*);
 /* TEMPORARY FUNCTIONS */
 Tree* temp_new_tree();
 void temp_tree_insert(char* word, Tree* tree);
+void temp_destroy_tree(Tree* tree);
 
 #endif
