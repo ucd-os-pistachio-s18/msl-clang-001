@@ -10,13 +10,13 @@
 /* METHODS FOR TREE_H */
 
 /* completely removes the tree from memory */
-void destroy_tree(Node* leaf){
+void destroy_node(Node *leaf){
 
     // verify there is a tree before trying to free stuff
     if(leaf != 0)
     {
-        destroy_tree(leaf->left_ptr);
-        destroy_tree(leaf->right_ptr);
+        destroy_node(leaf->left_ptr);
+        destroy_node(leaf->right_ptr);
         free (leaf->word);
         leaf->count = 0;
         free( leaf );
@@ -85,8 +85,16 @@ void print_tree_in_order(Node* root){
     }
 }
 
+/* creates a new tree with a word */
 Tree* new_tree(char* word_ptr){
     Tree* tree = (Tree*) malloc(sizeof(struct Tree));
     insert(word_ptr, tree->root_ptr);
     return tree;
+}
+
+/* removes a tree from memory, merely calls destroy_node */
+void destroy_tree(Tree* tree){
+    destroy_node(tree->root_ptr);
+    tree->size = 0;
+    free (tree);
 }

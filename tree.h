@@ -34,12 +34,13 @@ struct Tree {
     int size;
 };
 
-void destroy_tree(Node*);
+void destroy_node(Node *);
 void insert(char*, Node*);
 void new_node(char*, Node*);
 char* get_word(Node*);
 int get_count(Node*);
 void print_tree_in_order(Node*);
 Tree* new_tree(char*);
+void destroy_tree(Tree*);
 
 #endif
