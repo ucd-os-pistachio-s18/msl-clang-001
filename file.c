@@ -220,7 +220,7 @@ void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
     /* temp_print_tree_in_order(tree); */
 
     /* ACTUAL VERSION OF CODE */
-    print_tree_in_order(tree);
+    print_tree(tree);
 
     if (SHOW_DEBUG) printf("DEBUG:  Finished printing tree in order. \n");
 
