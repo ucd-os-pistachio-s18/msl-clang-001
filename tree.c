@@ -56,18 +56,14 @@ int new_node(char* new_word, Node* root){
     Node* node =  (Node*) malloc(sizeof(struct Node));
     /* insert the new word */
     node->word = new_word;
+    node->count = 1;
     /* initialize the children to null */
     node->left_ptr = 0;
     node->right_ptr = 0;
     node->parent_ptr = root;
-
+    root = node;
     int i = node->count;
-    if(i == 0) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
+    return i;
 }
 
 /* retrieves the word stored in the node */

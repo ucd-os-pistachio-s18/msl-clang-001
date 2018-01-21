@@ -19,6 +19,8 @@ void node_create(tests* test){
     }
     else{
         printf("The node was created.");
+        test->passed = test->passed + 1;
+        destroy_node(node_root);
     }
 }
 void node_insertion(tests* test){
@@ -30,7 +32,9 @@ void node_insertion(tests* test){
         printf("%s/n", debug_message);
     }
     else{
-        printf("The node was created.");
+        printf("The word was inserted.");
+        test->passed = test->passed + 1;
+        destroy_node(node_root);
     }
 }
 

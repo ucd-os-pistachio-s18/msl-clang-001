@@ -3,17 +3,10 @@
 
 typedef struct tests tests;
 
-const int tests_count = 8;
-
 struct tests{
     int passed;
     double rate;
 };
-
-void pass_fail_rate(tests* test){
-    int i = test->passed;
-    test->rate = i / tests_count;
-}
 
 /* note: destructors will be called at the end of each test */
 void node_create(tests*);

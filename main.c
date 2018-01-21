@@ -96,6 +96,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "tree.h"
 #include "tests.h"
 #include "file.h"
 
@@ -107,7 +108,7 @@ const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
 
 const int BUFFER_SIZE = 127;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
 
-const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
+const int SHOW_DEBUG = 0; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
 
 /* FUNCTION DECLARATIONS */
