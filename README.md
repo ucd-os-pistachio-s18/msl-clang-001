@@ -3,15 +3,27 @@
 ### TEAM PISTACHIO
 ### COLLABORATORS:  BRIAN SUMNER, NIKKI YESALUSKY
 ### UCDENVER CSCI 3453 SPRING 2018
+### C PROGRAMMING ASSIGNMENT 1
 
 
 ___
 
 
-##### APPROACH:
+
+##### OUTCOME:
 
 This assignment was given on the first day of class.  We were given exactly 6014 minutes to complete this assignment,
-and it is apparent that the majority of the class wasn't even aware this assignment existed.
+both of us had major obligations including employment to attend to during that time.  We tried very hard to get this
+finished, but in the end, not being able to figure out that we had neglected to use an instance of **_strcpy_** cost us
+an entire day.  If we had been given one more day to work on this project, we would have finished it.
+
+Although we were not successful in outputting to file an alphabetized count of word instances from an input text file,
+we did manage to properly tokenize the input file and output individual words to the output file.
+
+
+
+##### APPROACH:
+
 
 
 
@@ -20,18 +32,15 @@ and it is apparent that the majority of the class wasn't even aware this assignm
 We were required to implement a binary search tree using recursive methods.
 
 
+
 ##### ALGORITHMS:
 
 The input file(s) are tokenized into words by reading the file one character at a time.  Every letter is added to a
 buffer, and when the character read from the file is not a letter, the resultant word is sent to the tree where it is
-then inserted into a node.  If the word already existed in the tree, then that word node's instance count is incremented.
+then inserted into a node.  The buffer is then cleared to allow the next word to be stored.  If the word already
+existed in the tree using a recursive search, then that word node's instance count is incremented.  Unfortunately we
+were not able to accomplish this goal.
 
-
-##### ETC.:
-
-Our instructor was not willing to consider any extension for the deadline of this particular project.  We believe that
-we by far have completed more of the assigned goals for this project than the majority of the class.  We also believe
-that the majority of the class had not started any attempt to work on this project by the time the assignment was due.
 
 
 
