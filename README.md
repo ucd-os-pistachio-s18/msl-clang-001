@@ -24,12 +24,15 @@ we did manage to properly tokenize the input file and output individual words to
 
 ##### APPROACH:
 
-
+We started with research of several websites including the ones give to us by the instructor. Then, due to time constraints and the fact that neither of us work the same schedule, one of us started on the project and the other tried to finish it. This did not work out as well as planned but in the end, we came up with a generalized solution. This solution, while not trivial was not easy to complete and therefore caused us to be behind schedule and unable to complete the assignment.
 
 
 ##### DATA STRUCTURES:
 
 We were required to implement a binary search tree using recursive methods.
+The tree itself is a doubly-linked structure of node structs.
+The nodes have pointers to their parent and left and right children along with data of a count and character pointer to the character array required.
+There are several functions implemented throughout this application. Not all of them are useful or used but they are implemented.
 
 
 
