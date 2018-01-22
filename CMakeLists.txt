@@ -3,7 +3,7 @@ project(msl_clang_00)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(msl_clang_001 
+add_executable(msl_clang_001
         file.c
         file.h
         main.c

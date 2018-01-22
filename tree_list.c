@@ -56,57 +56,56 @@ void tree_list_insert(char* new_word, Tree* tree)
     else
     {
         printf("DEBUG:  Tree says root node exists:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
-        printf("DEBUG:  Inserting word into existing tree:  %s \n", new_word);
+//        printf("DEBUG:  Inserting word into existing tree:  %s \n", new_word);
         insert_list(new_word, tree->root_ptr);
     }
 
 }
 
 
+
 /* inserts a word into the tree */
-void insert_list(char* new_word, Node* root)
-{
+void insert_list(char* new_word, Node* root){
 
-    int result;
-
-    /*
-    if( root->right_ptr == NULL )
+    // this will make a node whether there is a tree already or not
+    if( root == 0 )
     {
-        printf("DEBUG:  insert_list root->right_ptr is NULL \n");
-        Node* new_ptr = new_node_list(new_word, root);
-        if (root->parent_ptr != NULL)
-        {
-            root->parent_ptr->right_ptr = new_ptr;
-        }
+        printf("DEBUG:  insert_list: root == 0 \n");
+
+        root = (Node*)malloc(sizeof(Node));
+        root->word = new_word;
+        /* set left and right children to null */
+        root->left_ptr = NULL;
+        root->right_ptr = NULL;
+        root->count = 1;
     }
+    else {
 
-    else {*/
         /* determine where the new word goes */
-        printf("DEBUG:  insert_list comparing:  %s  to:  %s  \n", root->word,  new_word);
-
-        result = strcmp(root->word, new_word);
+        int i = strcmp(root->word, new_word);
         // new word goes here
-        if (result == 0)
-        {
-            /* WORD FOUND */
+        if (i == 0){
+
+            printf("DEBUG:  insert_list: found word in node, incrementing count \n");
+
             root->count = root->count + 1;
-            printf("DEBUG:  insert_list found existing word:  %s  ; count is now:  %d \n", root->word,  root->count);
         }
-/*        else if(i < 0){
-            insert(new_word, root->left_ptr);
+        else if(i < 0){
+
+            printf("DEBUG:  insert_list:  i<0, going left \n");
+
+            insert_list(new_word, root->left_ptr);
         }
         else if (i > 0){
-            insert(new_word, root->right_ptr);
-        }
-*/
-        else
-        {
-            printf("DEBUG:  insert_list root->right_ptr is not NULL \n");
+
+            printf("DEBUG:  insert_list:  i>0, going right \n");
+
             insert_list(new_word, root->right_ptr);
         }
-
-
+    }
+    printf("DEBUG:  a word was inserted into the tree\n");
 }
+
 
 
 
@@ -116,7 +115,18 @@ Node* new_node_list(char* new_word, Node* parent)
 
     Node* node =  (Node*) malloc(sizeof(struct Node));
     /* insert the new word */
-    node->word = new_word;
+/*
+   node->word = new_word;
+*/
+    printf("DEBUG:  Strcpy:  %s  into:  node->word \n", new_word);
+
+
+    /* FINALLY FOUND THE BUG! */
+    char* data_word = (char*)malloc(sizeof(char));
+
+    strcpy(data_word, new_word);
+    node->word = data_word;
+
 
     printf("DEBUG:  Creating new node with word:  %s \n", node->word);
 
@@ -136,3 +146,4 @@ char* get_word_list(Node* node)
 {
     return node->word;
 }
+

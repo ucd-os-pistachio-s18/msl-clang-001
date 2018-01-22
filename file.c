@@ -206,12 +206,12 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
     int count = 1;
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  File found word:  %s \n", word);
-    if (SHOW_DEBUG && tree->root_ptr != NULL)  printf("DEBUG:  File shows current root node:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
+
 
     tree_list_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  File finished sending word to tree:  %s \n", word);
-    if (SHOW_DEBUG && tree->root_ptr != NULL)  printf("DEBUG:  File shows current root node:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
+
 
 
 //    char* tempWord= get_word_list(tree->root_ptr);
