@@ -51,10 +51,11 @@ void tree_list_insert(char* new_word, Tree* tree)
     {
         /* CREATE ROOT NODE */
         tree->root_ptr = new_node_list(new_word, NULL);
-        printf("DEBUG:  Created root node:  %s \n", tree->root_ptr->word);
+        printf("DEBUG:  Created root node:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
     }
     else
     {
+        printf("DEBUG:  Tree says root node exists:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
         printf("DEBUG:  Inserting word into existing tree:  %s \n", new_word);
         insert_list(new_word, tree->root_ptr);
     }
@@ -81,13 +82,15 @@ void insert_list(char* new_word, Node* root)
 
     else {*/
         /* determine where the new word goes */
+        printf("DEBUG:  insert_list comparing:  %s  to:  %s  \n", root->word,  new_word);
+
         result = strcmp(root->word, new_word);
         // new word goes here
         if (result == 0)
         {
             /* WORD FOUND */
-            printf("DEBUG:  insert_list found existing word \n");
             root->count = root->count + 1;
+            printf("DEBUG:  insert_list found existing word:  %s  ; count is now:  %d \n", root->word,  root->count);
         }
 /*        else if(i < 0){
             insert(new_word, root->left_ptr);

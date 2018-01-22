@@ -208,7 +208,8 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
 
     tree_list_insert(word, tree);
 
-    if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
+    if (SHOW_DEBUG)  printf("DEBUG:  File finished sending word to tree:  %s \n", word);
+    printf("DEBUG:  File shows current root node:  %s  with count:  %d \n\n", tree->root_ptr->word, tree->root_ptr->count);
 
 
 
