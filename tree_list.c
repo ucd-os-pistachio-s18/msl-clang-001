@@ -67,6 +67,21 @@ void tree_list_insert(char* new_word, Tree* tree)
 /* inserts a word into the tree */
 void insert_list(char* new_word, Node* root){
 
+    // this will make a node whether there is a tree already or not
+    if( root == 0 )
+    {
+        printf("DEBUG:  insert_list: root == 0 \n");
+
+        root = (Node*)malloc(sizeof(Node));
+        root->word = new_word;
+        /* set left and right children to null */
+        root->left_ptr = NULL;
+        root->right_ptr = NULL;
+        root->count = 1;
+    }
+    else {
+        printf("DEBUG:  insert_list: root != 0 \n");
+
         /* determine where the new word goes */
         int i = strcmp(root->word, new_word);
         // new word goes here
@@ -88,7 +103,7 @@ void insert_list(char* new_word, Node* root){
 
             insert_list(new_word, root->right_ptr);
         }
-    
+    }
     printf("DEBUG:  a word was inserted into the tree\n");
 }
 
