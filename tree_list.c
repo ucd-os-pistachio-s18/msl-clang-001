@@ -88,7 +88,7 @@ void insert_list(char* new_word, Node* root){
 
             insert_list(new_word, root->right_ptr);
         }
-    }
+    
     printf("DEBUG:  a word was inserted into the tree\n");
 }
 
