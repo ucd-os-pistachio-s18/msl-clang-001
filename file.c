@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include "file.h"
 #include "old_tree.h"
+#include "tree_list.h"
 
 
 /* FUNCTION:  processFiles
@@ -23,8 +24,8 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* ALLOCATE TREE */
     Tree* tree;
-    tree = new_tree();
-
+    /* tree = new_tree(); */
+    tree = new_tree_list();
 
     /* TRY TO OPEN INPUT FILE */
     if (SHOW_DEBUG) printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
@@ -33,6 +34,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
     if (!inputFile_ptr)
     {
+        printf("ERROR:  Unable to open input file:   %s \n", inputFilename);
         printUsageStatement();
         exit(1);
     }
@@ -48,6 +50,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     /* PRINT USAGE AND EXIT IF FILE NOT OPEN */
     if (!outputFile_ptr)
     {
+        printf("ERROR:  Unable to open output file:  %s \n", outputFilename);
         printUsageStatement();
         exit(1);
     }
@@ -59,7 +62,6 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* GET WORDS */
     getWords(inputFile_ptr, outputFile_ptr, tree, BUFFER_SIZE, SHOW_DEBUG);
-
 
 
     /* OUTPUT TREE TO FILE */
@@ -76,7 +78,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* DESTROY TREE */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
-    destroy_tree(tree);
+    destroy_tree_list(tree);
 
 }
 
@@ -204,9 +206,16 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
     int count = 1;
 
 
-    tree_insert(word, tree);
+    tree_list_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  Sent word to tree:  %s \n", word);
+
+
+
+//    char* tempWord= get_word_list(tree->root_ptr);
+  //  if (SHOW_DEBUG)  printf("DEBUG:  Root node word:  %s \n", tempWord);
+
+
 
     /* SEND TO OUTPUT FILE */
     fprintf(file, "%s: %d \n", word, count);
@@ -223,7 +232,10 @@ void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
 {
     if (SHOW_DEBUG) printf("\nDEBUG:  Printing tree in order... \n");
 
-    print_tree(tree);
+    /* temp_print_tree_in_order(tree); */
+
+    /* ACTUAL VERSION OF CODE */
+//    print_tree(tree);
 
     if (SHOW_DEBUG) printf("DEBUG:  Finished printing tree in order. \n");
 
