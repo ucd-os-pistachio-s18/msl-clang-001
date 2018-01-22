@@ -118,7 +118,7 @@ Node* new_node_list(char* new_word, Node* parent)
     /* insert the new word */
     node->word = new_word;
 
-//    printf("DEBUG:  New node with word:  %s \n", node->word);
+    printf("DEBUG:  Creating new node with word:  %s \n", node->word);
 
     node->count = 1;
     /* initialize the children to null */

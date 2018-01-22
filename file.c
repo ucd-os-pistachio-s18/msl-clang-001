@@ -35,7 +35,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (!inputFile_ptr)
     {
         printf("ERROR:  Unable to open input file:   %s \n", inputFilename);
-        printUsageStatement();
+       // printUsageStatement();
         exit(1);
     }
 
@@ -51,7 +51,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (!outputFile_ptr)
     {
         printf("ERROR:  Unable to open output file:  %s \n", outputFilename);
-        printUsageStatement();
+        // printUsageStatement();
         exit(1);
     }
 
@@ -205,12 +205,13 @@ void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
 {
     int count = 1;
 
+    if (SHOW_DEBUG)  printf("\nDEBUG:  File found word:  %s \n", word);
+    if (SHOW_DEBUG && tree->root_ptr != NULL)  printf("DEBUG:  File shows current root node:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
 
     tree_list_insert(word, tree);
 
     if (SHOW_DEBUG)  printf("DEBUG:  File finished sending word to tree:  %s \n", word);
-    printf("DEBUG:  File shows current root node:  %s  with count:  %d \n\n", tree->root_ptr->word, tree->root_ptr->count);
-
+    if (SHOW_DEBUG && tree->root_ptr != NULL)  printf("DEBUG:  File shows current root node:  %s  with count:  %d \n", tree->root_ptr->word, tree->root_ptr->count);
 
 
 //    char* tempWord= get_word_list(tree->root_ptr);
