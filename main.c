@@ -142,6 +142,9 @@ int main(int argc, char **argv)
 
 
     /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
+
+    printUsageStatement();
+
     switch (argc)
     {
         case 2:
@@ -159,7 +162,6 @@ int main(int argc, char **argv)
             break;
 
         default:
-            printUsageStatement();
             exit(1);
     }
 
