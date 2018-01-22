@@ -12,10 +12,10 @@ ___
 
 ##### OUTCOME:
 
-This assignment was given on the first day of class.  We were given exactly 6014 minutes to complete this assignment,
+This assignment was given on the first day of class.  We were given exactly 6014 minutes to complete this assignment;
 both of us had major obligations including employment to attend to during that time.  We tried very hard to get this
-finished, but in the end, not being able to figure out that we had neglected to use an instance of **_strcpy_** cost us
-an entire day.  If we had been given one more day to work on this project, we would have finished it.
+finished, but in the end, not being able to figure out that we had neglected to use  **_strcpy_** to assign words to
+nodes cost us an entire day.  If we had been given one more day to work on this project, we would have finished it.
 
 Although we were not successful in outputting to file an alphabetized count of word instances from an input text file,
 we did manage to properly tokenize the input file and output individual words to the output file.
@@ -24,15 +24,25 @@ we did manage to properly tokenize the input file and output individual words to
 
 ##### APPROACH:
 
-We started with research of several websites including the ones give to us by the instructor. Then, due to time constraints and the fact that neither of us work the same schedule, one of us started on the project and the other tried to finish it. This did not work out as well as planned but in the end, we came up with a generalized solution. This solution, while not trivial was not easy to complete and therefore caused us to be behind schedule and unable to complete the assignment.
+We started with research of several websites including the ones give to us by the instructor. Then, due to time
+constraints and the fact that neither of us work the same schedule, one of us started on the project and the other
+tried to finish it. This did not work out as well as planned but in the end, we came up with a generalized solution.
+This solution, while not trivial was not easy to complete and therefore caused us to be behind schedule and unable to
+complete the assignment.
+
+We attempted to build a working tree data structure three separate times.  Our first attempt did not work, so we tried
+to build a tree from scratch using similar ideas.  The third attempt at building a tree centered around obtaining the
+correct output from the program using a linked list of tree nodes, which we would then retrofit into a proper tree.  We
+did not have enough time to make any of these work correctly.
+
 
 
 ##### DATA STRUCTURES:
 
-We were required to implement a binary search tree using recursive methods.
-The tree itself is a doubly-linked structure of node structs.
-The nodes have pointers to their parent and left and right children along with data of a count and character pointer to the character array required.
-There are several functions implemented throughout this application. Not all of them are useful or used but they are implemented.
+We were required to implement a binary search tree using recursive methods. The tree itself is a doubly-linked
+structure of node structs.  The nodes have pointers to their parent and left and right children along with data of a
+count and character pointer to the character array required.  There are several functions implemented throughout this
+application. Not all of them are useful or used but they are implemented.
 
 
 
