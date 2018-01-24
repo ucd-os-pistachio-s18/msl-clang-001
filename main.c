@@ -11,7 +11,6 @@
  */
 
 
-
 /*
  * REFERENCE MATERIAL CITED:
  *
@@ -36,7 +35,6 @@
  * https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  * http://www.zentut.com/c-tutorial/c-binary-search-tree/
  */
-
 
 
 /*
@@ -94,7 +92,6 @@
  */
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "file.h"
@@ -104,44 +101,14 @@
 /* GLOBAL CONSTANT DEFINITIONS: */
 const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
                               "\nNOTE:  If none is specified, the default outputfile will be: ";
-
 const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
-
 const int BUFFER_SIZE = 127;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
-
 const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
 
-/* FUNCTION DECLARATIONS */
-void printUsageStatement();
-
 int main(int argc, char **argv)
 {
-
-    /* TASKS: */
-
-    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
-    /* ACCEPT INPUT FILE AS COMMANDLINE ARGUMENT */
-        /* TEST IF FILE EXISTS */
-            /* IF FILE DOES NOT EXIST, PRINT USAGE STATEMENT AND EXIT */
-        /* OPEN FILE */
-    /* READ FILE WORD-BY-WORD INTO BUFFER */
-        /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
-    /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
-    /* DESTROY TREE */
-    /* CLOSE FILES */
-
-
-    /* IMPLEMENTATION: */
-
-
-    /* VARIABLE DECLARATIONS: */
-    FILE *inputFile_ptr;
-    FILE *outputFile_ptr;
-
-    tree_test_driver();
-
-    printUsageStatement();
+    printf("%s %s \n\n", USAGE_STATEMENT, DEFAULT_OUTPUTFILENAME);
 
     // CHECK IF ARGUMENTS ARE INVALID
     switch (argc)
@@ -150,14 +117,14 @@ int main(int argc, char **argv)
             if (SHOW_DEBUG) printf("DEBUG:  There is 1 commandline argument:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
 
-//            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
+            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         case 3:
             if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline arguments:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
-//            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
+            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         default:
@@ -166,12 +133,4 @@ int main(int argc, char **argv)
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
     exit(0);
-
-}
-
-void printUsageStatement()
-{
-
-    printf("%s %s \n\n\n", USAGE_STATEMENT, DEFAULT_OUTPUTFILENAME);
-
 }

@@ -19,12 +19,12 @@ struct Node {
 
 
 Node* new_Node(int key);
-void destroy_Node(Node *);
+void destroy_Node(Node*);
 
-Node* insert_node(Node *, int);
-void destroy_tree(Node *, Node *);
+Node* insert_node(Node*, int);
+void destroy_tree(Node*, Node*);
 
-void list_tree_inorder(Node *);
+void list_tree_inorder(Node*);
 
 
 void tree_test_driver();

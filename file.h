@@ -24,19 +24,19 @@ void getWords(FILE*, FILE*,  Node*, const int BUFFER_SIZE, const int SHOW_DEBUG)
 
 /* FUNCTION:  sendWordToTree
  * RECEIVES:  WORD, TREE, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
+ * RETURNS:   VOID
  * PERFORMS:  SENDS WORD TO INSERT IN TREE
  */
-void sendWordToTree(char* word, FILE*, Node*, int SHOW_DEBUG);
+void sendWordToTree(char* word, Node*, int SHOW_DEBUG);
 
 
 
-/* FUNCTION:  outputTreeToFile
- * RECEIVES:  TBD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
- * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
+/* FUNCTION:  outputDataToFile
+ * RECEIVES:  WORD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RETURNS:   VOID
+ * PERFORMS:  SENDS A WORD TO OUTPUT FILE
  */
-void outputTreeToFile(FILE*, Node*, int SHOW_DEBUG);
+void outputDataToFile(char*, int, FILE*, int SHOW_DEBUG);
 
 
 #endif
