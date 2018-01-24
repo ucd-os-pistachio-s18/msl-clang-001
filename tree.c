@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "tree.h"
+#include "file.h"
 
 /*
  * MODIFIED BY BRIAN SUMNER FROM:
@@ -8,7 +10,7 @@
  */
 
 
-Node* new_Node(int key)
+Node* new_Node(int SHOW_DEBUG)
 {
     // ALLOCATE MEMORY
     Node* node_ptr;
@@ -17,70 +19,95 @@ Node* new_Node(int key)
     // INIT DATA
     node_ptr->left_ptr = NULL;
     node_ptr->right_ptr = NULL;
-    node_ptr->data = key;
+    node_ptr->word = NULL;
+    node_ptr->count = 0;
 
-    printf("DEBUG:  Created new node with key:  %d \n\n", key);
+    if (SHOW_DEBUG) printf("DEBUG:  Created new empty node\n\n");
 
     return node_ptr;
 }
 
 
-void destroy_Node(Node *node_ptr)
+void destroy_Node(Node *node_ptr, int SHOW_DEBUG)
 {
     if (node_ptr->left_ptr != NULL || node_ptr->right_ptr != NULL)
     {
-        printf("ERROR:  NODE HAS ACTIVE CHILDREN\n");
+        if (SHOW_DEBUG) printf("ERROR:  NODE HAS ACTIVE CHILDREN\n");
     }
     else
-        printf("DEBUG:  Destroying node with key:  %d \n", node_ptr->data);
+        if (SHOW_DEBUG) printf("DEBUG:  Destroying node with key:  %d \n", node_ptr->count);
 
     // DESTROY DATA
-    node_ptr->data = 0;
+    node_ptr->count = 0;
+    free(node_ptr->word);
 
     // DEALLOCATE NODE
     free(node_ptr);
 
-    printf("DEBUG:  DESTROYED NODE.\n\n");
+    if (SHOW_DEBUG) printf("DEBUG:  DESTROYED NODE.\n\n");
 }
 
 
-Node* insert_node(Node *root_ptr, int key)
+Node* insert_node(Node *root_ptr, char* word, int SHOW_DEBUG)
 {
+    // DO NOT DEREFERENCE DATA BEFORE CHECKING IF ROOT IS NULL!
     if (root_ptr == NULL)
     {
         // CASE: NO NODE EXISTS AT ROOT; MAKE A NEW NODE WITH KEY
-        printf("DEBUG:  Unable to find key:  %d\n", key);
-        root_ptr = new_Node(key);
+        if (SHOW_DEBUG) printf("DEBUG:  Unable to find word:  %s\n", word);
+        root_ptr = new_Node(SHOW_DEBUG);
+
+        root_ptr->word = (char*)malloc(sizeof(word));
+        strcpy(root_ptr->word, word);
+        ++root_ptr->count;
+
+        // RECURSION IS COMPLETE.  RETURN NODE ADDRESS
+    }
+    else if (root_ptr->count == 0)
+    {
+        // CASE: NODE EXISTS AT ROOT WITHOUT DATA; SET DATA TO ROOT NODE
+        root_ptr->word = (char*)malloc(sizeof(word));
+        strcpy(root_ptr->word, word);
+        ++root_ptr->count;
 
         // RECURSION IS COMPLETE.  RETURN NODE ADDRESS
     }
     else
     {
         // CASE: TREE EXISTS
-        if (key == root_ptr->data)
+
+        // COMPARE WORDS
+        int strcmpResult;
+        strcmpResult = strcmp(word, root_ptr->word);
+
+//        if (word == root_ptr->word)
+        if (strcmpResult == 0)
         {
             // CASE: KEY FOUND IN THE ROOT NODE
 
             /* DO STUFF HERE */
-            printf("DEBUG:  Found key in tree:  %d \n\n", key);
+            if (SHOW_DEBUG) printf("DEBUG:  Found word in tree:  %s \n\n", root_ptr->word);
+            ++root_ptr->count;
 
             // RECURSION IS COMPLETE.  RETURN NODE ADDRESS
         }
-        else if (key < root_ptr->data)
+//        else if (word < root_ptr->count)
+        else if (strcmpResult < 0)
         {
             // CASE: KEY IS LESS THAN THE ROOT NODE DATA
-            printf("DEBUG:  Searching left branch of node:  %d  for key:  %d \n", root_ptr->data, key);
+            if (SHOW_DEBUG) printf("DEBUG:  Searching left branch of node:  %s  for word:  %s \n", root_ptr->word, word);
 
             // RECURSIVELY SEARCH THE LEFT BRANCH
-            root_ptr->left_ptr = insert_node(root_ptr->left_ptr, key);
+            root_ptr->left_ptr = insert_node(root_ptr->left_ptr, word, SHOW_DEBUG);
         }
-        else if (key > root_ptr->data)
+//        else if (word > root_ptr->count)
+        else if (strcmpResult > 0)
         {
             // CASE: INPUT DATA IS GREATER THAN THE ROOT NODE DATA
-            printf("DEBUG:  Searching right  branch of node:  %d  for key:  %d \n", root_ptr->data, key);
+            if (SHOW_DEBUG) printf("DEBUG:  Searching right  branch of node:  %s  for word:  %s \n", root_ptr->word, word);
 
             // RECURSIVELY SEARCH THE RIGHT BRANCH
-            root_ptr->right_ptr = insert_node(root_ptr->right_ptr, key);
+            root_ptr->right_ptr = insert_node(root_ptr->right_ptr, word, SHOW_DEBUG);
         }
     }
 
@@ -89,20 +116,20 @@ Node* insert_node(Node *root_ptr, int key)
 }
 
 
-void destroy_tree(Node *node_ptr, Node *parent_ptr)
+void destroy_tree(Node *node_ptr, Node *parent_ptr, int SHOW_DEBUG)
 {
-    printf("DEBUG:  Attempting to destroy node with key:  %d \n", node_ptr->data);
+    if (SHOW_DEBUG) printf("DEBUG:  Attempting to destroy node with word:  %s \n", node_ptr->word);
 
     if (node_ptr->left_ptr != NULL)
     {
-        printf("DEBUG:  Going left of node with key:  %d \n", node_ptr->data);
-        destroy_tree(node_ptr->left_ptr, node_ptr);
+        if (SHOW_DEBUG) printf("DEBUG:  Going left of node with word:  %s \n", node_ptr->word);
+        destroy_tree(node_ptr->left_ptr, node_ptr, SHOW_DEBUG);
     }
 
     if (node_ptr->right_ptr != NULL)
     {
-        printf("DEBUG:  Going right of node with key:  %d \n", node_ptr->data);
-        destroy_tree(node_ptr->right_ptr, node_ptr);
+        if (SHOW_DEBUG) printf("DEBUG:  Going right of node with word:  %s \n", node_ptr->word);
+        destroy_tree(node_ptr->right_ptr, node_ptr, SHOW_DEBUG);
     }
 
     if (parent_ptr != NULL)
@@ -112,34 +139,37 @@ void destroy_tree(Node *node_ptr, Node *parent_ptr)
         else if (parent_ptr->right_ptr != NULL)
             parent_ptr->right_ptr = NULL;
         else
-            printf("ERROR:  UNABLE TO SET CHILDREN NULL IN PARENT\n");
+        if (SHOW_DEBUG) printf("ERROR:  UNABLE TO SET CHILDREN NULL IN PARENT\n");
     }
 
     // BOTH CHILDREN NOW NULL; DELETE NODE
-    printf("\nDEBUG:  Initiating destruction of node with key:  %d \n", node_ptr->data);
-    destroy_Node(node_ptr);
+    if (SHOW_DEBUG) printf("\nDEBUG:  Initiating destruction of node with word:  %s \n", node_ptr->word);
+    destroy_Node(node_ptr, SHOW_DEBUG);
     node_ptr = NULL;
 }
 
 
-void list_tree_inorder(Node *root_ptr)
+void list_tree_inorder_to_file(Node* root_ptr, FILE* outputFile_ptr)
 {
     if (root_ptr != NULL)
     {
         // GO LEFT
         if (root_ptr->left_ptr != NULL)
-            list_tree_inorder(root_ptr->left_ptr);
+            list_tree_inorder_to_file(root_ptr->left_ptr, outputFile_ptr);
 
         // DO STUFF
-        printf("OUTPUT:  Node data:  %d \n", root_ptr->data);
+//        printf("OUTPUT:  Node count:  %d \n", root_ptr->count);
+        outputDataToFile(root_ptr->word, root_ptr->count, outputFile_ptr);
 
         // GO RIGHT
         if (root_ptr->right_ptr != NULL)
-            list_tree_inorder(root_ptr->right_ptr);
+            list_tree_inorder_to_file(root_ptr->right_ptr, outputFile_ptr);
     }
 }
 
 
+// UNUSED TEST CODE
+/*
 void tree_test_driver()
 {
     Node* root_ptr;
@@ -151,7 +181,8 @@ void tree_test_driver()
 //    int intArray[] = {4,2,1,3};
 //    int intArray[] = {5,5,5,5};
 
-    root_ptr = new_Node(intArray[0]);
+    root_ptr = new_Node();
+    root_ptr->count = intArray[0];
 
     int index;
     int max = (sizeof(intArray)/ sizeof(newKey));
@@ -159,12 +190,13 @@ void tree_test_driver()
     {
         newKey =  intArray[index];
         printf("DEBUG:  Inserting key:  %d \n", newKey);
-        insert_node(root_ptr, newKey);
+//        insert_node(root_ptr, newKey);
     }
 
     printf("\nDEBUG:  Outputting tree in order: \n\n");
-    list_tree_inorder(root_ptr);
+//    list_tree_inorder_to_file(root_ptr);
 
     printf("\nDEBUG:  Destroying tree...\n\n");
     destroy_tree(root_ptr, NULL);
 }
+*/

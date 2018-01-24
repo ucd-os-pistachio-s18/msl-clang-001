@@ -36,7 +36,7 @@ void sendWordToTree(char* word, Node*, int SHOW_DEBUG);
  * RETURNS:   VOID
  * PERFORMS:  SENDS A WORD TO OUTPUT FILE
  */
-void outputDataToFile(char*, int, FILE*, int SHOW_DEBUG);
+void outputDataToFile(char*, int, FILE*);
 
 
 #endif

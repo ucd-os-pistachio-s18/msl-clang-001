@@ -23,9 +23,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* ALLOCATE TREE */
     Node* root_ptr;
-    root_ptr = NULL;
-    /* root_ptr = new_tree(); */
-//    root_ptr = new_tree_list();
+    root_ptr = new_Node(SHOW_DEBUG);
 
     /* TRY TO OPEN INPUT FILE */
     if (SHOW_DEBUG) printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
@@ -51,7 +49,6 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (!outputFile_ptr)
     {
         printf("ERROR:  Unable to open output file:  %s \n", outputFilename);
-        // printUsageStatement();
         exit(1);
     }
 
@@ -65,7 +62,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
     /* OUTPUT TREE TO FILE */
-//    outputWordToFile(outputFile_ptr, root_ptr, SHOW_DEBUG);
+    list_tree_inorder_to_file(root_ptr, outputFile_ptr);
 
 
 
@@ -76,10 +73,10 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (SHOW_DEBUG) printf("DEBUG:  Files closed successfully. \n");
 
 
-    /* DESTROY TREE */
+    /* DESTROY TREE USING NULL AS POINTER TO PARENT */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying root_ptr... \n");
     if (root_ptr != NULL)
-        destroy_tree(root_ptr, NULL);
+        destroy_tree(root_ptr, NULL, SHOW_DEBUG);
 
 }
 
@@ -183,7 +180,7 @@ void getWords(FILE *inputFile_ptr, Node* node_ptr, const int BUFFER_SIZE, const 
         wordLength = 0;
     }
 
-    if (SHOW_DEBUG)  printf("DEBUG:  Reached END-OF-FILE for input file. \n");
+    if (SHOW_DEBUG)  printf("DEBUG:  Reached END-OF-FILE for input file. \n\n");
 }
 
 
@@ -193,8 +190,7 @@ void sendWordToTree(char* word, Node* tree, int SHOW_DEBUG)
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  File found word:  %s \n", word);
 
-
-//    tree_list_insert(word, tree);
+    insert_node(tree, word, SHOW_DEBUG);
 
     if (SHOW_DEBUG)  printf("DEBUG:  File finished sending word to tree:  %s \n", word);
 
@@ -204,14 +200,15 @@ void sendWordToTree(char* word, Node* tree, int SHOW_DEBUG)
 
 
 
-/* FUNCTION:  outputWordToFile
+/* FUNCTION:  outputDataToFile
  * RECEIVES:  OUTPUTFILE POINTER, TREE, SHOW DEBUG BOOLEAN
  * RETURNS:   TBD
  * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
  */
-void outputDataToFile(char* word, int count, FILE* file_ptr, int SHOW_DEBUG)
+void outputDataToFile(char* word, int count, FILE* file_ptr)
 {
     /* SEND TO OUTPUT FILE */
+    printf("OUTPUTFILE <<  %s: %d \n", word, count);
     fprintf(file_ptr, "%s: %d \n", word, count);
 }
 
