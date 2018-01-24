@@ -7,9 +7,5 @@ add_executable(msl_clang_001
         file.c
         file.h
         main.c
-        old_tree.c
-        old_tree.h
-        tests.c
-        tests.h
-        tree_list.c
-        tree_list.h)
+        tree.c
+        tree.h)

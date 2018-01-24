@@ -97,9 +97,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "old_tree.h"
 #include "file.h"
-#include "tree_list.h"
+#include "tree.h"
 
 
 /* GLOBAL CONSTANT DEFINITIONS: */
@@ -140,25 +139,25 @@ int main(int argc, char **argv)
     FILE *inputFile_ptr;
     FILE *outputFile_ptr;
 
-
-    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
+    tree_test_driver();
 
     printUsageStatement();
 
+    // CHECK IF ARGUMENTS ARE INVALID
     switch (argc)
     {
         case 2:
             if (SHOW_DEBUG) printf("DEBUG:  There is 1 commandline argument:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
 
-            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
+//            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         case 3:
             if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline arguments:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
-            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
+//            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
             break;
 
         default:
