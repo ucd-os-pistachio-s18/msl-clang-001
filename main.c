@@ -113,11 +113,14 @@ int main(int argc, char **argv)
 
     // PARSE DEBUG
     int SHOW_DEBUG = (int)DEFAULT_SHOW_DEBUG;
-    int isNoDebugSwitch = strcmp(argv[1], "--debug");
+    int isNoDebugSwitch = 1;
 
     if (argc >= 2)
+    {
+        isNoDebugSwitch = strcmp(argv[1], "--debug");
         if (isNoDebugSwitch == 0)
             SHOW_DEBUG = 1;
+    }
 
     // CHECK IF ARGUMENTS ARE INVALID
     if (isNoDebugSwitch)
@@ -135,6 +138,12 @@ int main(int argc, char **argv)
             if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
             processFiles((const char*) argv[1], (const char*) argv[2], BUFFER_SIZE, SHOW_DEBUG);
+        }
+        // IMPROPER USAGE DETECTED; EXIT
+        else
+        {
+            printf("ERROR:  Invalid arguments\n\n\n");
+            exit(1);
         }
     }
     else
@@ -154,7 +163,11 @@ int main(int argc, char **argv)
             processFiles((const char*) argv[2], (const char*) argv[3], BUFFER_SIZE, SHOW_DEBUG);
         }
         // IMPROPER USAGE DETECTED; EXIT
-        else exit(1);
+        else
+        {
+            printf("ERROR:  Invalid arguments\n\n\n");
+            exit(1);
+        }
     }
 
     printf("\n\n\nProgram execution completed successfully. \n\n\n");
