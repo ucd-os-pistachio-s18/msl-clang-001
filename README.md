@@ -9,6 +9,13 @@
 ___
 
 
+##### UPDATE:
+
+After [building a fourth tree from scratch](https://github.com/ucd-os-pistachio-s18/kiss_tree), we were able to finally
+get this assignment to work properly.  Don't be afraid to use the --debug switch when running our program.
+
+
+
 
 ##### OUTCOME:
 
@@ -30,7 +37,7 @@ tried to finish it. This did not work out as well as planned but in the end, we 
 This solution, while not trivial was not easy to complete and therefore caused us to be behind schedule and unable to
 complete the assignment.
 
-We attempted to build a working tree count structure three separate times.  Our first attempt did not work, so we tried
+We attempted to build a working tree data structure three separate times.  Our first attempt did not work, so we tried
 to build a tree from scratch using similar ideas.  The third attempt at building a tree centered around obtaining the
 correct output from the program using a linked list of tree nodes, which we would then retrofit into a proper tree.  We
 did not have enough time to make any of these work correctly.
@@ -40,8 +47,8 @@ did not have enough time to make any of these work correctly.
 ##### DATA STRUCTURES:
 
 We were required to implement a binary search tree using recursive methods. The tree itself is a doubly-linked
-structure of node structs.  The nodes have pointers to their parent and left and right children along with count of a
-count and character pointer to the character array required.  There are several functions implemented throughout this
+structure of node structs.  The nodes have pointers to their parent and left and right children along with count of and
+character pointer to the character array required.  There are several functions implemented throughout this
 application. Not all of them are useful or used but they are implemented.
 
 
@@ -75,14 +82,14 @@ _data structures and pointers in the C language_
 2. Practice development in the C programming language.
 3. Practice explicit memory allocation and deallocation.
 4. Practice working with _pointers_, raw references to memory locations, usually dynamically allocated.
-5. Practice creating and manipulating count structures (arrays and `struct`s).
-6. Practice writing algorithms for these count structures.
+5. Practice creating and manipulating data structures (arrays and `struct`s).
+6. Practice writing algorithms for these data structures.
 7. Prepare for [C2](https://github.com/ivogeorg/msl-clang-002).
 8. Develop good coding style.
 
 ## Synopsis
 
-This is a warmup assignment, meant to give you a problem which involves important features of the C language (pointers, dynamic memory allocation with `malloc` and deallocation with `free`, `struct` count structures), but is not in itself hard conceptually. You need to read in a file with English words and output a file where the words are counted and sorted. You are required to use _an unbalanced binary tree_ as the fundamental structure.
+This is a warmup assignment, meant to give you a problem which involves important features of the C language (pointers, dynamic memory allocation with `malloc` and deallocation with `free`, `struct` data structures), but is not in itself hard conceptually. You need to read in a file with English words and output a file where the words are counted and sorted. You are required to use _an unbalanced binary tree_ as the fundamental structure.
 
 ## Submission
 
@@ -115,7 +122,7 @@ Free Github repositories are public so you can look at each other's code. Please
 
 ## Use of libraries
 
-For this assignment, no external libraries should be used, except for the ANSI C Standard Library. The implementation of the count structures should be your own. We will use library implementations of count structures and programming primitives in the Pintos assignments.
+For this assignment, no external libraries should be used, except for the ANSI C Standard Library. The implementation of the data structures should be your own. We will use library implementations of data structures and programming primitives in the Pintos assignments.
 
 ## Coding style
 
@@ -174,4 +181,4 @@ The tree has to be a *self-referential* C `struct`, containing a dynamically all
 
 ### README
 
-Overwrite the **README.md** file and describe your project (approach, count structures, algorithms, etc.). Use this opportunity to get to know [*markdown*](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It's a useful skill.
+Overwrite the **README.md** file and describe your project (approach, data structures, algorithms, etc.). Use this opportunity to get to know [*markdown*](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). It's a useful skill.
