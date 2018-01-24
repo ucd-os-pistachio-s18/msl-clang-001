@@ -19,7 +19,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
  * RETURNS:   VOID
  * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
  */
-void getWords(FILE*, FILE*,  Node*, const int BUFFER_SIZE, const int SHOW_DEBUG);
+void getWords(FILE*, Node*, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  sendWordToTree

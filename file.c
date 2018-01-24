@@ -23,6 +23,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* ALLOCATE TREE */
     Node* root_ptr;
+    root_ptr = NULL;
     /* root_ptr = new_tree(); */
 //    root_ptr = new_tree_list();
 
@@ -60,7 +61,7 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
     /* GET WORDS */
-    getWords(inputFile_ptr, outputFile_ptr, root_ptr, BUFFER_SIZE, SHOW_DEBUG);
+    getWords(inputFile_ptr, root_ptr, BUFFER_SIZE, SHOW_DEBUG);
 
 
     /* OUTPUT TREE TO FILE */
@@ -77,17 +78,13 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
     /* DESTROY TREE */
     if (SHOW_DEBUG) printf("\nDEBUG:  Destroying root_ptr... \n");
-    destroy_tree(root_ptr, NULL);
+    if (root_ptr != NULL)
+        destroy_tree(root_ptr, NULL);
 
 }
 
 
-/* FUNCTION:  getWords
- * RECEIVES:  INPUTFILE POINTER, TREE POINTER, BUFFER_SIZE, SHOW DEBUG BOOLEAN
- * RETURNS:   VOID
- * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
- */
-void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Node* node_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG)
+void getWords(FILE *inputFile_ptr, Node* node_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG)
 {
     /* VARIABLE DECLARATIONS: */
     int rawChar = 0;
@@ -173,7 +170,6 @@ void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Node* node_ptr, const i
     /* END WHILE LOOP */
     }
 
-
     /* TEST IF LAST WORD IS STORED IN BUFFER */
     if (wordLength > 0)
     {
@@ -187,19 +183,10 @@ void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Node* node_ptr, const i
         wordLength = 0;
     }
 
-
-
     if (SHOW_DEBUG)  printf("DEBUG:  Reached END-OF-FILE for input file. \n");
-
 }
 
 
-
-/* FUNCTION:  sendWordToTree
- * RECEIVES:  WORD, TREE, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
- * PERFORMS:  SENDS WORD TO INSERT IN TREE
- */
 void sendWordToTree(char* word, Node* tree, int SHOW_DEBUG)
 {
     int count = 1;
