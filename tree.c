@@ -159,7 +159,8 @@ void list_tree_inorder_to_file(Node* root_ptr, FILE* outputFile_ptr)
 
         // DO STUFF
 //        printf("OUTPUT:  Node count:  %d \n", root_ptr->count);
-        outputDataToFile(root_ptr->word, root_ptr->count, outputFile_ptr);
+        if (root_ptr->count != 0)
+            outputDataToFile(root_ptr->word, root_ptr->count, outputFile_ptr);
 
         // GO RIGHT
         if (root_ptr->right_ptr != NULL)
