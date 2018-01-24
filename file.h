@@ -4,7 +4,7 @@
 /* FILE IO HEADER */
 
 
-#include "old_tree.h"
+#include "tree.h"
 
 /* FUNCTION:  processFiles
  * RECEIVES:  INPUT FILENAME, OUTPUT FILENAME, BUFFER SIZE, SHOW DEBUG BOOLEAN
@@ -19,29 +19,24 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
  * RETURNS:   VOID
  * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
  */
-void getWords(FILE*, FILE*,  Tree* tree, const int BUFFER_SIZE, const int SHOW_DEBUG);
+void getWords(FILE*, Node*, const int BUFFER_SIZE, const int SHOW_DEBUG);
 
 
 /* FUNCTION:  sendWordToTree
  * RECEIVES:  WORD, TREE, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
+ * RETURNS:   VOID
  * PERFORMS:  SENDS WORD TO INSERT IN TREE
  */
-void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG);
+void sendWordToTree(char* word, Node*, int SHOW_DEBUG);
 
 
 
-/* FUNCTION:  outputTreeToFile
- * RECEIVES:  TBD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
- * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
+/* FUNCTION:  outputDataToFile
+ * RECEIVES:  WORD, OUTPUTFILE POINTER, SHOW DEBUG BOOLEAN
+ * RETURNS:   VOID
+ * PERFORMS:  SENDS A WORD TO OUTPUT FILE
  */
-void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG);
-
-
-void temp_print_nodes_in_order(Node *);
-void temp_print_tree_in_order(Tree*);
-
+void outputDataToFile(char*, int, FILE*);
 
 
 #endif

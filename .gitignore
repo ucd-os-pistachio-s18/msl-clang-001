@@ -1,8 +1,15 @@
+# TEAM PISTACHIO
+# DEFAULT .gitignore
+
+
 # CLion cmake-build-debug directory
 cmake-build-debug
 
 # CLion .idea directory
 .idea
+
+# Notepad++ backup directory
+nppBackup
 
 # Object files
 *.o

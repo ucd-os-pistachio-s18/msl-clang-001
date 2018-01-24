@@ -9,6 +9,13 @@
 ___
 
 
+##### UPDATE:
+
+After [building a fourth tree from scratch](https://github.com/ucd-os-pistachio-s18/kiss_tree), we were able to finally
+get this assignment to work properly.  Don't be afraid to use the --debug switch when running our program.
+
+
+
 
 ##### OUTCOME:
 
@@ -40,8 +47,8 @@ did not have enough time to make any of these work correctly.
 ##### DATA STRUCTURES:
 
 We were required to implement a binary search tree using recursive methods. The tree itself is a doubly-linked
-structure of node structs.  The nodes have pointers to their parent and left and right children along with data of a
-count and character pointer to the character array required.  There are several functions implemented throughout this
+structure of node structs.  The nodes have pointers to their parent and left and right children along with count of and
+character pointer to the character array required.  There are several functions implemented throughout this
 application. Not all of them are useful or used but they are implemented.
 
 

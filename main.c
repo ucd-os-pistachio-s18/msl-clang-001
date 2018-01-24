@@ -11,7 +11,6 @@
  */
 
 
-
 /*
  * REFERENCE MATERIAL CITED:
  *
@@ -36,7 +35,6 @@
  * https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  * http://www.zentut.com/c-tutorial/c-binary-search-tree/
  */
-
 
 
 /*
@@ -94,85 +92,71 @@
  */
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "old_tree.h"
+#include <string.h>
 #include "file.h"
-#include "tree_list.h"
+#include "tree.h"
 
 
 /* GLOBAL CONSTANT DEFINITIONS: */
-const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe inputfile.txt <outputfile.txt> \n"
+const char* USAGE_STATEMENT = "\n\n\nPROGRAM USAGE:  msl-clang-001.exe --debug inputfile.txt <outputfile.txt> \n"
                               "\nNOTE:  If none is specified, the default outputfile will be: ";
-
 const char* DEFAULT_OUTPUTFILENAME = "myoutput01.txt";
-
 const int BUFFER_SIZE = 127;  /* THIS IS A DECIDEDLY EXCESSIVE SIZE */
+const int DEFAULT_SHOW_DEBUG = 0; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
 
-const int SHOW_DEBUG = 1; /* 1 TURNS ON DEBUG MESSAGES; 0 TURNS OFF DEBUG MESSAGES */
-
-
-/* FUNCTION DECLARATIONS */
-void printUsageStatement();
 
 int main(int argc, char **argv)
 {
+    printf("%s %s \n\n\n\n", USAGE_STATEMENT, DEFAULT_OUTPUTFILENAME);
 
-    /* TASKS: */
+    // PARSE DEBUG
+    int SHOW_DEBUG = (int)DEFAULT_SHOW_DEBUG;
+    int isNoDebugSwitch = strcmp(argv[1], "--debug");
 
-    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
-    /* ACCEPT INPUT FILE AS COMMANDLINE ARGUMENT */
-        /* TEST IF FILE EXISTS */
-            /* IF FILE DOES NOT EXIST, PRINT USAGE STATEMENT AND EXIT */
-        /* OPEN FILE */
-    /* READ FILE WORD-BY-WORD INTO BUFFER */
-        /* BUILD TREE RECURSIVELY WHILE COUNTING WORD INSTANCES */
-    /* PRINT TREE RECURSIVELY TO OUTPUT FILE */
-    /* DESTROY TREE */
-    /* CLOSE FILES */
+    if (argc >= 2)
+        if (isNoDebugSwitch == 0)
+            SHOW_DEBUG = 1;
 
-
-    /* IMPLEMENTATION: */
-
-
-    /* VARIABLE DECLARATIONS: */
-    FILE *inputFile_ptr;
-    FILE *outputFile_ptr;
-
-
-    /* PRINT USAGE STATEMENT IF ARGUMENTS ARE INVALID */
-
-    printUsageStatement();
-
-    switch (argc)
+    // CHECK IF ARGUMENTS ARE INVALID
+    if (isNoDebugSwitch)
     {
-        case 2:
+        if (argc == 2)
+        {
             if (SHOW_DEBUG) printf("DEBUG:  There is 1 commandline argument:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s \n\n", argv[0], argv[1]);
 
-            processFiles((const char*)argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
-            break;
-
-        case 3:
+            processFiles((const char*) argv[1], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
+        }
+        else if (argc == 3)
+        {
             if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline arguments:\n");
             if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[0], argv[1], argv[2]);
 
-            processFiles((const char*)argv[1], (const char*)argv[2], BUFFER_SIZE, SHOW_DEBUG);
-            break;
+            processFiles((const char*) argv[1], (const char*) argv[2], BUFFER_SIZE, SHOW_DEBUG);
+        }
+    }
+    else
+    {
+        if (argc == 3)
+        {
+            if (SHOW_DEBUG) printf("DEBUG:  There are 2 commandline argumentS:\n");
+            if (SHOW_DEBUG) printf("DEBUG:  %s %s %s \n\n", argv[1], argv[1], argv[2]);
 
-        default:
-            exit(1);
+            processFiles((const char*) argv[2], DEFAULT_OUTPUTFILENAME, BUFFER_SIZE, SHOW_DEBUG);
+        }
+        else if (argc == 4)
+        {
+            if (SHOW_DEBUG) printf("DEBUG:  There are 3 commandline arguments:\n");
+            if (SHOW_DEBUG) printf("DEBUG:  %s %s %s %s \n\n", argv[0], argv[1], argv[2], argv[3]);
+
+            processFiles((const char*) argv[2], (const char*) argv[3], BUFFER_SIZE, SHOW_DEBUG);
+        }
+        // IMPROPER USAGE DETECTED; EXIT
+        else exit(1);
     }
 
-    if (SHOW_DEBUG)  printf("\nDEBUG:  Program execution complete. \n");
+    printf("\n\n\nProgram execution completed successfully. \n\n\n");
     exit(0);
-
-}
-
-void printUsageStatement()
-{
-
-    printf("%s %s \n\n\n", USAGE_STATEMENT, DEFAULT_OUTPUTFILENAME);
-
 }

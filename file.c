@@ -6,8 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "file.h"
-#include "old_tree.h"
-#include "tree_list.h"
+#include "tree.h"
 
 
 /* FUNCTION:  processFiles
@@ -23,9 +22,8 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     FILE* outputFile_ptr;
 
     /* ALLOCATE TREE */
-    Tree* tree;
-    /* tree = new_tree(); */
-    tree = new_tree_list();
+    Node* root_ptr;
+    root_ptr = new_Node(SHOW_DEBUG);
 
     /* TRY TO OPEN INPUT FILE */
     if (SHOW_DEBUG) printf("DEBUG:  Attempting to open input file:   %s \n", inputFilename);
@@ -51,7 +49,6 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (!outputFile_ptr)
     {
         printf("ERROR:  Unable to open output file:  %s \n", outputFilename);
-        // printUsageStatement();
         exit(1);
     }
 
@@ -61,11 +58,11 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
 
 
     /* GET WORDS */
-    getWords(inputFile_ptr, outputFile_ptr, tree, BUFFER_SIZE, SHOW_DEBUG);
+    getWords(inputFile_ptr, root_ptr, BUFFER_SIZE, SHOW_DEBUG);
 
 
     /* OUTPUT TREE TO FILE */
-    outputTreeToFile(outputFile_ptr, tree, SHOW_DEBUG);
+    list_tree_inorder_to_file(root_ptr, outputFile_ptr);
 
 
 
@@ -76,19 +73,15 @@ void processFiles(const char* inputFilename, const char* outputFilename, const i
     if (SHOW_DEBUG) printf("DEBUG:  Files closed successfully. \n");
 
 
-    /* DESTROY TREE */
-    if (SHOW_DEBUG) printf("\nDEBUG:  Destroying tree... \n");
-    destroy_tree_list(tree);
+    /* DESTROY TREE USING NULL AS POINTER TO PARENT */
+    if (SHOW_DEBUG) printf("\nDEBUG:  Destroying root_ptr... \n");
+    if (root_ptr != NULL)
+        destroy_tree(root_ptr, NULL, SHOW_DEBUG);
 
 }
 
 
-/* FUNCTION:  getWords
- * RECEIVES:  INPUTFILE POINTER, TREE POINTER, BUFFER_SIZE, SHOW DEBUG BOOLEAN
- * RETURNS:   VOID
- * PERFORMS:  READS ENTIRE INPUTFILE AND TOKENIZES TEXT INTO WORDS
- */
-void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Tree* tree, const int BUFFER_SIZE, const int SHOW_DEBUG)
+void getWords(FILE *inputFile_ptr, Node* node_ptr, const int BUFFER_SIZE, const int SHOW_DEBUG)
 {
     /* VARIABLE DECLARATIONS: */
     int rawChar = 0;
@@ -156,7 +149,7 @@ void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Tree* tree, const int B
                 /* BUFFER DOES HOLD A WORD */
 
                 /* SEND WORD TO TREE */
-                sendWordToTree(readBuffer, outputFile_ptr, tree, SHOW_DEBUG);
+                sendWordToTree(readBuffer, node_ptr, SHOW_DEBUG);
 
                 /* RESET BUFFER AND WORDLENGTH */
                 memset(readBuffer, (int) '\0', BUFFER_SIZE + 1); /* NOTE: This is the actual size of the buffer space */
@@ -174,96 +167,48 @@ void getWords(FILE *inputFile_ptr, FILE* outputFile_ptr, Tree* tree, const int B
     /* END WHILE LOOP */
     }
 
-
     /* TEST IF LAST WORD IS STORED IN BUFFER */
     if (wordLength > 0)
     {
         /* BUFFER DOES HOLD A WORD */
 
         /* SEND WORD TO TREE */
-        sendWordToTree(readBuffer, outputFile_ptr, tree, SHOW_DEBUG);
+        sendWordToTree(readBuffer, node_ptr, SHOW_DEBUG);
 
         /* RESET BUFFER AND WORDLENGTH (UNNECESSARY BUT DO IT ANYWAY) */
         memset(readBuffer, (int) '\0', BUFFER_SIZE + 1); /* NOTE: This is the actual size of the buffer space */
         wordLength = 0;
     }
 
-
-
-    if (SHOW_DEBUG)  printf("DEBUG:  Reached END-OF-FILE for input file. \n");
-
+    if (SHOW_DEBUG)  printf("DEBUG:  Reached END-OF-FILE for input file. \n\n");
 }
 
 
-
-/* FUNCTION:  sendWordToTree
- * RECEIVES:  WORD, TREE, SHOW DEBUG BOOLEAN
- * RETURNS:   TBD
- * PERFORMS:  SENDS WORD TO INSERT IN TREE
- */
-void sendWordToTree(char* word, FILE* file, Tree* tree, int SHOW_DEBUG)
+void sendWordToTree(char* word, Node* tree, int SHOW_DEBUG)
 {
     int count = 1;
 
     if (SHOW_DEBUG)  printf("\nDEBUG:  File found word:  %s \n", word);
 
-
-    tree_list_insert(word, tree);
+    insert_node(tree, word, SHOW_DEBUG);
 
     if (SHOW_DEBUG)  printf("DEBUG:  File finished sending word to tree:  %s \n", word);
 
-
-
 //    char* tempWord= get_word_list(tree->root_ptr);
   //  if (SHOW_DEBUG)  printf("DEBUG:  Root node word:  %s \n", tempWord);
-
-
-
-    /* SEND TO OUTPUT FILE */
-    fprintf(file, "%s: %d \n", word, count);
 }
 
 
 
-/* FUNCTION:  outputTreeToFile
+/* FUNCTION:  outputDataToFile
  * RECEIVES:  OUTPUTFILE POINTER, TREE, SHOW DEBUG BOOLEAN
  * RETURNS:   TBD
  * PERFORMS:  LISTS TREE CONTENTS AND STORES IN OUTPUT FILE
  */
-void outputTreeToFile(FILE *file_ptr, Tree* tree, int SHOW_DEBUG)
+void outputDataToFile(char* word, int count, FILE* file_ptr)
 {
-    if (SHOW_DEBUG) printf("\nDEBUG:  Printing tree in order... \n");
-
-    /* temp_print_tree_in_order(tree); */
-
-    /* ACTUAL VERSION OF CODE */
-//    print_tree(tree);
-
-    if (SHOW_DEBUG) printf("DEBUG:  Finished printing tree in order. \n");
-
+    /* SEND TO OUTPUT FILE */
+    printf("OUTPUTFILE <<  %s: %d \n", word, count);
+    fprintf(file_ptr, "%s: %d \n", word, count);
 }
 
-
-
-
-/* temporary version of prints the tree in order */
-/*
- * void temp_print_nodes_in_order(Node *root){
-
-    printf("DEBUG:  Printing nodes starting at root:  %d. \n", root);
-    /* if there is no tree, don't print anything *
-    if(root != 0){
-        temp_print_nodes_in_order(root->left_ptr);
-        printf("%s", get_word(root));
-        int i = get_count(root);
-        char* tmp = " : ";
-        tmp = tmp + (char)i;
-        temp_print_nodes_in_order(root->right_ptr);
-    }
-}
-
-/* prints a tree in order *
-void temp_print_tree_in_order(Tree* tree){
-    temp_print_nodes_in_order(tree->root_ptr);
-}
-*/
