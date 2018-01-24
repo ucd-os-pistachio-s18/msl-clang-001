@@ -35,7 +35,7 @@ void destroy_Node(Node *node_ptr, int SHOW_DEBUG)
         if (SHOW_DEBUG) printf("ERROR:  NODE HAS ACTIVE CHILDREN\n");
     }
     else
-        if (SHOW_DEBUG) printf("DEBUG:  Destroying node with key:  %d \n", node_ptr->count);
+        if (SHOW_DEBUG) printf("DEBUG:  Destroying node with word:  %s \n", node_ptr->word);
 
     // DESTROY DATA
     node_ptr->count = 0;
@@ -53,7 +53,7 @@ Node* insert_node(Node *root_ptr, char* word, int SHOW_DEBUG)
     // DO NOT DEREFERENCE DATA BEFORE CHECKING IF ROOT IS NULL!
     if (root_ptr == NULL)
     {
-        // CASE: NO NODE EXISTS AT ROOT; MAKE A NEW NODE WITH KEY
+        // CASE: NO NODE EXISTS AT ROOT; MAKE A NEW NODE WITH WORD
         if (SHOW_DEBUG) printf("DEBUG:  Unable to find word:  %s\n", word);
         root_ptr = new_Node(SHOW_DEBUG);
 
@@ -83,7 +83,7 @@ Node* insert_node(Node *root_ptr, char* word, int SHOW_DEBUG)
 //        if (word == root_ptr->word)
         if (strcmpResult == 0)
         {
-            // CASE: KEY FOUND IN THE ROOT NODE
+            // CASE: WORD FOUND IN THE ROOT NODE
 
             /* DO STUFF HERE */
             if (SHOW_DEBUG) printf("DEBUG:  Found word in tree:  %s \n\n", root_ptr->word);
@@ -94,7 +94,7 @@ Node* insert_node(Node *root_ptr, char* word, int SHOW_DEBUG)
 //        else if (word < root_ptr->count)
         else if (strcmpResult < 0)
         {
-            // CASE: KEY IS LESS THAN THE ROOT NODE DATA
+            // CASE: WORD IS LESS THAN THE ROOT NODE DATA
             if (SHOW_DEBUG) printf("DEBUG:  Searching left branch of node:  %s  for word:  %s \n", root_ptr->word, word);
 
             // RECURSIVELY SEARCH THE LEFT BRANCH
