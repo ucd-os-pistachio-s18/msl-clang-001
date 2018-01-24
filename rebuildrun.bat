@@ -1,4 +1,6 @@
 @echo off
 cls
-gcc main.c file.c old_tree.c tree_list.c tests.c -o msl-clang-001.exe
+gcc main.c file.c tree.c -o msl-clang-001.exe
+cd input_output_data_files
 msl-clang-001.exe %*
+cd ..
